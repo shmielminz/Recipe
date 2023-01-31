@@ -247,7 +247,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmRecipe";
-            this.Text = "frmRecipe";
+            this.Text = "Recipe";
             this.tblMain.ResumeLayout(false);
             this.tblMain.PerformLayout();
             this.ResumeLayout(false);
