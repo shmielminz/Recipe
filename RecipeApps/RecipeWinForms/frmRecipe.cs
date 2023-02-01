@@ -23,7 +23,7 @@ namespace RecipeWinForms
             string sql = "select r.*, c.CuisineType, s.Username from Recipe r join Cuisine c on c.CuisineId = r.CuisineId join Staff s on s.StaffId = r.StaffId where r.RecipeId = " + recipeid.ToString();
             DataTable dt = SQLUtility.GetDataTable(sql);
             txtRecipeName.DataBindings.Add("Text", dt, "RecipeName");
-            txtStaffName.DataBindings.Add("Text", dt, "Username");
+            lblStaffName.DataBindings.Add("Text", dt, "Username");
             lblCuisine.DataBindings.Add("Text", dt, "CuisineType");
             txtCalories.DataBindings.Add("Text", dt, "Calories");
             txtDateDrafted.DataBindings.Add("Text", dt, "DateDrafted");

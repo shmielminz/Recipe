@@ -33,7 +33,6 @@
             this.txtDatePublished = new System.Windows.Forms.TextBox();
             this.txtDateDrafted = new System.Windows.Forms.TextBox();
             this.txtCalories = new System.Windows.Forms.TextBox();
-            this.txtStaffName = new System.Windows.Forms.TextBox();
             this.lblCaptionRecipeName = new System.Windows.Forms.Label();
             this.lblCaptionStaffName = new System.Windows.Forms.Label();
             this.lblCaptionCuisine = new System.Windows.Forms.Label();
@@ -45,6 +44,7 @@
             this.txtRecipeName = new System.Windows.Forms.TextBox();
             this.lblRecipeStatus = new System.Windows.Forms.Label();
             this.lblCuisine = new System.Windows.Forms.Label();
+            this.lblStaffName = new System.Windows.Forms.Label();
             this.tblMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +57,6 @@
             this.tblMain.Controls.Add(this.txtDatePublished, 1, 5);
             this.tblMain.Controls.Add(this.txtDateDrafted, 1, 4);
             this.tblMain.Controls.Add(this.txtCalories, 1, 3);
-            this.tblMain.Controls.Add(this.txtStaffName, 1, 1);
             this.tblMain.Controls.Add(this.lblCaptionRecipeName, 0, 0);
             this.tblMain.Controls.Add(this.lblCaptionStaffName, 0, 1);
             this.tblMain.Controls.Add(this.lblCaptionCuisine, 0, 2);
@@ -69,6 +68,7 @@
             this.tblMain.Controls.Add(this.txtRecipeName, 1, 0);
             this.tblMain.Controls.Add(this.lblRecipeStatus, 1, 7);
             this.tblMain.Controls.Add(this.lblCuisine, 1, 2);
+            this.tblMain.Controls.Add(this.lblStaffName, 1, 1);
             this.tblMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblMain.Location = new System.Drawing.Point(0, 0);
             this.tblMain.Margin = new System.Windows.Forms.Padding(4);
@@ -82,13 +82,15 @@
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tblMain.Size = new System.Drawing.Size(665, 373);
+            this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblMain.Size = new System.Drawing.Size(665, 366);
             this.tblMain.TabIndex = 0;
             // 
             // txtDateArchived
             // 
             this.txtDateArchived.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDateArchived.Location = new System.Drawing.Point(186, 266);
+            this.txtDateArchived.Location = new System.Drawing.Point(186, 255);
+            this.txtDateArchived.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.txtDateArchived.Name = "txtDateArchived";
             this.txtDateArchived.Size = new System.Drawing.Size(476, 39);
             this.txtDateArchived.TabIndex = 14;
@@ -96,7 +98,8 @@
             // txtDatePublished
             // 
             this.txtDatePublished.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDatePublished.Location = new System.Drawing.Point(186, 221);
+            this.txtDatePublished.Location = new System.Drawing.Point(186, 211);
+            this.txtDatePublished.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.txtDatePublished.Name = "txtDatePublished";
             this.txtDatePublished.Size = new System.Drawing.Size(476, 39);
             this.txtDatePublished.TabIndex = 13;
@@ -104,7 +107,8 @@
             // txtDateDrafted
             // 
             this.txtDateDrafted.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDateDrafted.Location = new System.Drawing.Point(186, 176);
+            this.txtDateDrafted.Location = new System.Drawing.Point(186, 167);
+            this.txtDateDrafted.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.txtDateDrafted.Name = "txtDateDrafted";
             this.txtDateDrafted.Size = new System.Drawing.Size(476, 39);
             this.txtDateDrafted.TabIndex = 12;
@@ -112,18 +116,11 @@
             // txtCalories
             // 
             this.txtCalories.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCalories.Location = new System.Drawing.Point(186, 131);
+            this.txtCalories.Location = new System.Drawing.Point(186, 123);
+            this.txtCalories.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.txtCalories.Name = "txtCalories";
             this.txtCalories.Size = new System.Drawing.Size(476, 39);
             this.txtCalories.TabIndex = 11;
-            // 
-            // txtStaffName
-            // 
-            this.txtStaffName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtStaffName.Location = new System.Drawing.Point(186, 48);
-            this.txtStaffName.Name = "txtStaffName";
-            this.txtStaffName.Size = new System.Drawing.Size(476, 39);
-            this.txtStaffName.TabIndex = 9;
             // 
             // lblCaptionRecipeName
             // 
@@ -140,7 +137,7 @@
             // 
             this.lblCaptionStaffName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCaptionStaffName.AutoSize = true;
-            this.lblCaptionStaffName.Location = new System.Drawing.Point(4, 51);
+            this.lblCaptionStaffName.Location = new System.Drawing.Point(4, 46);
             this.lblCaptionStaffName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCaptionStaffName.Name = "lblCaptionStaffName";
             this.lblCaptionStaffName.Size = new System.Drawing.Size(133, 32);
@@ -151,7 +148,7 @@
             // 
             this.lblCaptionCuisine.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCaptionCuisine.AutoSize = true;
-            this.lblCaptionCuisine.Location = new System.Drawing.Point(4, 93);
+            this.lblCaptionCuisine.Location = new System.Drawing.Point(4, 83);
             this.lblCaptionCuisine.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCaptionCuisine.Name = "lblCaptionCuisine";
             this.lblCaptionCuisine.Size = new System.Drawing.Size(92, 32);
@@ -162,7 +159,7 @@
             // 
             this.lblCaptionCalories.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCaptionCalories.AutoSize = true;
-            this.lblCaptionCalories.Location = new System.Drawing.Point(4, 134);
+            this.lblCaptionCalories.Location = new System.Drawing.Point(4, 124);
             this.lblCaptionCalories.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCaptionCalories.Name = "lblCaptionCalories";
             this.lblCaptionCalories.Size = new System.Drawing.Size(98, 32);
@@ -173,7 +170,7 @@
             // 
             this.lblCaptionDateDrafted.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCaptionDateDrafted.AutoSize = true;
-            this.lblCaptionDateDrafted.Location = new System.Drawing.Point(4, 179);
+            this.lblCaptionDateDrafted.Location = new System.Drawing.Point(4, 168);
             this.lblCaptionDateDrafted.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCaptionDateDrafted.Name = "lblCaptionDateDrafted";
             this.lblCaptionDateDrafted.Size = new System.Drawing.Size(151, 32);
@@ -184,7 +181,7 @@
             // 
             this.lblCaptionDatePublished.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCaptionDatePublished.AutoSize = true;
-            this.lblCaptionDatePublished.Location = new System.Drawing.Point(4, 224);
+            this.lblCaptionDatePublished.Location = new System.Drawing.Point(4, 212);
             this.lblCaptionDatePublished.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCaptionDatePublished.Name = "lblCaptionDatePublished";
             this.lblCaptionDatePublished.Size = new System.Drawing.Size(175, 32);
@@ -195,7 +192,7 @@
             // 
             this.lblCaptionDateArchived.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCaptionDateArchived.AutoSize = true;
-            this.lblCaptionDateArchived.Location = new System.Drawing.Point(4, 269);
+            this.lblCaptionDateArchived.Location = new System.Drawing.Point(4, 256);
             this.lblCaptionDateArchived.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCaptionDateArchived.Name = "lblCaptionDateArchived";
             this.lblCaptionDateArchived.Size = new System.Drawing.Size(164, 32);
@@ -205,7 +202,7 @@
             // lblCaptionRecipeStatus
             // 
             this.lblCaptionRecipeStatus.AutoSize = true;
-            this.lblCaptionRecipeStatus.Location = new System.Drawing.Point(4, 315);
+            this.lblCaptionRecipeStatus.Location = new System.Drawing.Point(4, 301);
             this.lblCaptionRecipeStatus.Margin = new System.Windows.Forms.Padding(4, 7, 4, 0);
             this.lblCaptionRecipeStatus.Name = "lblCaptionRecipeStatus";
             this.lblCaptionRecipeStatus.Size = new System.Drawing.Size(78, 32);
@@ -215,7 +212,8 @@
             // txtRecipeName
             // 
             this.txtRecipeName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtRecipeName.Location = new System.Drawing.Point(186, 3);
+            this.txtRecipeName.Location = new System.Drawing.Point(186, 5);
+            this.txtRecipeName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.txtRecipeName.Name = "txtRecipeName";
             this.txtRecipeName.Size = new System.Drawing.Size(476, 39);
             this.txtRecipeName.TabIndex = 8;
@@ -224,25 +222,39 @@
             // 
             this.lblRecipeStatus.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblRecipeStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblRecipeStatus.Location = new System.Drawing.Point(186, 308);
+            this.lblRecipeStatus.Location = new System.Drawing.Point(186, 299);
+            this.lblRecipeStatus.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.lblRecipeStatus.Name = "lblRecipeStatus";
-            this.lblRecipeStatus.Size = new System.Drawing.Size(476, 65);
+            this.lblRecipeStatus.Size = new System.Drawing.Size(476, 80);
             this.lblRecipeStatus.TabIndex = 15;
             // 
             // lblCuisine
             // 
+            this.lblCuisine.AutoSize = true;
             this.lblCuisine.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblCuisine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCuisine.Location = new System.Drawing.Point(186, 90);
+            this.lblCuisine.Location = new System.Drawing.Point(186, 86);
+            this.lblCuisine.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.lblCuisine.Name = "lblCuisine";
-            this.lblCuisine.Size = new System.Drawing.Size(476, 38);
+            this.lblCuisine.Size = new System.Drawing.Size(476, 32);
             this.lblCuisine.TabIndex = 16;
+            // 
+            // lblStaffName
+            // 
+            this.lblStaffName.AutoSize = true;
+            this.lblStaffName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblStaffName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStaffName.Location = new System.Drawing.Point(186, 49);
+            this.lblStaffName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.lblStaffName.Name = "lblStaffName";
+            this.lblStaffName.Size = new System.Drawing.Size(476, 32);
+            this.lblStaffName.TabIndex = 17;
             // 
             // frmRecipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(665, 373);
+            this.ClientSize = new System.Drawing.Size(665, 366);
             this.Controls.Add(this.tblMain);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -270,8 +282,8 @@
         private TextBox txtDatePublished;
         private TextBox txtDateDrafted;
         private TextBox txtCalories;
-        private TextBox txtStaffName;
         private Label lblRecipeStatus;
         private Label lblCuisine;
+        private Label lblStaffName;
     }
 }
