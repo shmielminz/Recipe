@@ -61,10 +61,10 @@ create table dbo.Recipe(
         constraint ck_Recipe_recipe_name_cannot_be_blank check(RecipeName > '')
         constraint u_Recipe_RecipeName unique,
     Calories int not null constraint ck_Recipe_calories_must_be_greater_than_0 check(Calories > 0),
-    DateDrafted datetime not null default getdate()
+    DateDrafted datetime2 not null default getdate()
         constraint ck_Recipe_date_drafted_must_be_between_31_12_2021_and_today check(DateDrafted between '2021-12-31' and getdate()),
-    DatePublished datetime,
-    DateArchived datetime,
+    DatePublished datetime2,
+    DateArchived datetime2,
     ImageName as concat('Recipe-',replace(RecipeName,' ','-'),'.jpg') persisted,
     RecipeStatus as case when DateArchived is not null then 'Archived' else case when DatePublished is not null then 'Published' else 'Drafted' end end persisted,
     constraint ck_DatePublished_must_be_between_DateDrafted_and_today check(DatePublished between DateDrafted and getdate()),
