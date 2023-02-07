@@ -33,6 +33,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtRecipe = new System.Windows.Forms.TextBox();
             this.lblRecipe = new System.Windows.Forms.Label();
+            this.btnNew = new System.Windows.Forms.Button();
             this.gRecipes = new System.Windows.Forms.DataGridView();
             this.tblMain.SuspendLayout();
             this.tblSearch.SuspendLayout();
@@ -57,18 +58,20 @@
             // tblSearch
             // 
             this.tblSearch.AutoSize = true;
-            this.tblSearch.ColumnCount = 3;
+            this.tblSearch.ColumnCount = 4;
+            this.tblSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblSearch.Controls.Add(this.btnSearch, 2, 0);
             this.tblSearch.Controls.Add(this.txtRecipe, 1, 0);
             this.tblSearch.Controls.Add(this.lblRecipe, 0, 0);
+            this.tblSearch.Controls.Add(this.btnNew, 3, 0);
             this.tblSearch.Location = new System.Drawing.Point(3, 3);
             this.tblSearch.Name = "tblSearch";
             this.tblSearch.RowCount = 1;
             this.tblSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblSearch.Size = new System.Drawing.Size(347, 48);
+            this.tblSearch.Size = new System.Drawing.Size(447, 48);
             this.tblSearch.TabIndex = 0;
             // 
             // btnSearch
@@ -79,7 +82,7 @@
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(95, 42);
             this.btnSearch.TabIndex = 1;
-            this.btnSearch.Text = "Search";
+            this.btnSearch.Text = "&Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             // 
             // txtRecipe
@@ -99,6 +102,17 @@
             this.lblRecipe.Size = new System.Drawing.Size(84, 32);
             this.lblRecipe.TabIndex = 2;
             this.lblRecipe.Text = "Recipe";
+            // 
+            // btnNew
+            // 
+            this.btnNew.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnNew.AutoSize = true;
+            this.btnNew.Location = new System.Drawing.Point(350, 3);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(94, 42);
+            this.btnNew.TabIndex = 3;
+            this.btnNew.Text = "&New";
+            this.btnNew.UseVisualStyleBackColor = true;
             // 
             // gRecipes
             // 
@@ -138,5 +152,6 @@
         private TextBox txtRecipe;
         private Label lblRecipe;
         private DataGridView gRecipes;
+        private Button btnNew;
     }
 }
