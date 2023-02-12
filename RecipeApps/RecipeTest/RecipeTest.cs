@@ -14,8 +14,11 @@ namespace RecipeTest
         [TestCase("New recipe", 100, "2022-12-31")]
         [TestCase("Another recipe", 200, "2023-01-01")]
         [TestCase("Third recipe", 100, "2022-01-01")]
+        //Unique should fail.
         [TestCase("Third recipe", 100, "2023-01-01")]
+        //Early date should fail.
         [TestCase("More recipes", 100, "2021-12-30")]
+        //Future date should fail.
         [TestCase("More new recipes", 100, "2024-01-01")]
         public void InsertNewRecipe(string recipename, int calories, DateTime datedrafted)
         {
