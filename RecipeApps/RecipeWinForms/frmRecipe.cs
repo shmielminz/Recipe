@@ -49,17 +49,17 @@ namespace RecipeWinForms
             SQLUtility.DebugPrintDataTable(dtrecipe);
             DataRow r = dtrecipe.Rows[0];
             int id = (int)r["RecipeId"];
+            var d = ((DateTime)r["DateDrafted"]).ToString("yyyy-MM-dd h:mm");
             string sql;
             if (id > 0)
             {
                 sql = string.Join(Environment.NewLine,
-                        "set dateformat dmy;",
                         $"update Recipe set",
                         $"StaffId = {r["StaffId"]},",
                         $"CuisineId = {r["CuisineId"]},",
                         $"RecipeName = '{r["RecipeName"]}',",
                         $"Calories = {r["Calories"]},",
-                        $"DateDrafted = '{r["DateDrafted"]}'",
+                        $"DateDrafted = '{d}'",
                         $"where RecipeId = {r["RecipeId"]}"
                     );
             }
