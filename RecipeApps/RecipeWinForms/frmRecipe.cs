@@ -8,8 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CPUFramework;
-using CPUWindowsFormFramework;
 
 namespace RecipeWinForms
 {
@@ -25,14 +23,13 @@ namespace RecipeWinForms
 
         public void ShowForm(int recipeid)
         {
-            string sql = "select r.*, c.CuisineType, s.Username from Recipe r join Cuisine c on c.CuisineId = r.CuisineId join Staff s on s.StaffId = r.StaffId where r.RecipeId = " + recipeid.ToString();
-            dtrecipe = SQLUtility.GetDataTable(sql);
+            dtrecipe = Recipe.Load(recipeid);
             if(recipeid == 0)
             {
                 dtrecipe.Rows.Add();
             }
-            DataTable dtstaff = SQLUtility.GetDataTable("select StaffId, Username from Staff");
-            DataTable dtcuisine = SQLUtility.GetDataTable("select CuisineId, CuisineType from Cuisine");
+            DataTable dtstaff = Recipe.GetStaffList();
+            DataTable dtcuisine = Recipe.GetCuisineList();
             WindowsFormsUtility.SetControlBinding(txtRecipeName, dtrecipe);
             WindowsFormsUtility.SetListBinding(lstUsername, dtstaff, dtrecipe, "Staff");
             WindowsFormsUtility.SetListBinding(lstCuisineType, dtcuisine, dtrecipe, "Cuisine");
@@ -46,38 +43,13 @@ namespace RecipeWinForms
 
         private void Save()
         {
-            SQLUtility.DebugPrintDataTable(dtrecipe);
-            DataRow r = dtrecipe.Rows[0];
-            int id = (int)r["RecipeId"];
-            var d = ((DateTime)r["DateDrafted"]).ToString("yyyy-MM-dd h:mm");
-            string sql;
-            if (id > 0)
-            {
-                sql = string.Join(Environment.NewLine,
-                        $"update Recipe set",
-                        $"StaffId = {r["StaffId"]},",
-                        $"CuisineId = {r["CuisineId"]},",
-                        $"RecipeName = '{r["RecipeName"]}',",
-                        $"Calories = {r["Calories"]},",
-                        $"DateDrafted = '{d}'",
-                        $"where RecipeId = {r["RecipeId"]}"
-                    );
-            }
-            else
-            {
-                sql = "insert Recipe(StaffId,CuisineId,RecipeName,Calories,DateDrafted)";
-                sql += $"select {r["StaffId"]},{r["CuisineId"]},'{r["RecipeName"]}',{r["Calories"]},'{r["DateDrafted"]}'";
-            }
-            Debug.Print(sql);
-            SQLUtility.ExecuteSql(sql);
+            Recipe.Save(dtrecipe);
             this.Close();
         }
 
         private void Delete()
         {
-            int id = (int)dtrecipe.Rows[0]["RecipeId"];
-            string sql = $"delete recipeingredient where recipeid = {id}; delete mealcourserecipe where recipeid = {id}; delete cookbookrecipe where recipeid = {id}; delete recipestep where recipeid = {id}; delete Recipe where RecipeId = {id}";
-            SQLUtility.ExecuteSql(sql);
+            Recipe.Delete(dtrecipe);
             this.Close();
         }
 
