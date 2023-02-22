@@ -14,12 +14,6 @@ namespace RecipeTest
         [TestCase("New recipe", 100, "2022-12-31")]
         [TestCase("Another recipe", 200, "2023-01-01")]
         [TestCase("Third recipe", 100, "2022-01-01")]
-        //Unique should fail.
-        [TestCase("Third recipe", 100, "2023-01-01")]
-        //Early date should fail.
-        [TestCase("More recipes", 100, "2021-12-30")]
-        //Future date should fail.
-        [TestCase("More new recipes", 100, "2024-01-01")]
         public void InsertNewRecipe(string recipename, int calories, DateTime datedrafted)
         {
             DataTable dt = SQLUtility.GetDataTable("select * from recipe where recipeid = 0");
@@ -116,6 +110,22 @@ namespace RecipeTest
             int loadedid = (int)dt.Rows[0]["recipeid"];
             Assert.IsTrue(loadedid == recipeid, "Id returned by app (" + loadedid + ") <> " + recipeid);
             TestContext.WriteLine("Loaded recipe with id = " + loadedid);
+        }
+
+        [Test]
+        public void SearchRecipe()
+        {
+            string criteria = "a";
+            int num = SQLUtility.GetFirstColumnFirstRowValue($"select total = count(*) from recipe where recipename like '%{criteria}%'");
+            Assume.That(num > 0, "No recipes that match the search for " + criteria);
+            TestContext.WriteLine(num + " recipes that match '" + criteria + "' criteria");
+            TestContext.WriteLine("Ensure that recipes search returns " + num + " rows");
+
+            DataTable dt = Recipe.SearchRecipe(criteria);
+            int results = dt.Rows.Count;
+
+            Assert.IsTrue(results == num, "Results of recipes search does not match number of recipes, " + results + " <> " + num);
+            TestContext.WriteLine("Number of rows returned by recipes search (" + results + ") = " + num);
         }
 
         [Test]

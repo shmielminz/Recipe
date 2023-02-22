@@ -1,5 +1,6 @@
 ﻿using CPUFramework;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Linq;
@@ -12,24 +13,42 @@ namespace RecipeSystem
     {
         public static DataTable SearchRecipe(string recipename)
         {
-            string sql = "select r.RecipeId, r.RecipeName, r.Calories, r.RecipeStatus from Recipe r where r.RecipeName like '%" + recipename + "%'";
-            return SQLUtility.GetDataTable(sql);
+            DataTable dt;
+            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
+            cmd.Parameters["@RecipeName"].Value = recipename;
+            if (recipename == "")
+            {
+                cmd.Parameters["@All"].Value = 1;
+            }
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
         }
 
         public static DataTable Load(int recipeid)
         {
-            string sql = "select r.*, c.CuisineType, s.Username from Recipe r join Cuisine c on c.CuisineId = r.CuisineId join Staff s on s.StaffId = r.StaffId where r.RecipeId = " + recipeid.ToString();
-            return SQLUtility.GetDataTable(sql);
+            DataTable dt;
+            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
+            cmd.Parameters["@RecipeId"].Value = recipeid;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
         }
 
         public static DataTable GetStaffList()
         {
-            return SQLUtility.GetDataTable("select StaffId, Username from Staff");
+            DataTable dt;
+            SqlCommand cmd = SQLUtility.GetSqlCommand("StaffGet");
+            cmd.Parameters["@All"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
         }
 
         public static DataTable GetCuisineList()
         {
-            return SQLUtility.GetDataTable("select CuisineId, CuisineType from Cuisine");
+            DataTable dt;
+            SqlCommand cmd = SQLUtility.GetSqlCommand("CuisineGet");
+            cmd.Parameters["@All"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
         }
 
         public static void Save(DataTable dtrecipe)
