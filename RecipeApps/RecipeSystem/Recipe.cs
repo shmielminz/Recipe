@@ -53,27 +53,27 @@ namespace RecipeSystem
 
         public static void Save(DataTable dtrecipe)
         {
+            string sql;
             SQLUtility.DebugPrintDataTable(dtrecipe);
             DataRow r = dtrecipe.Rows[0];
             int id = (int)r["RecipeId"];
-            string sql = "set dateformat dmy;";
+            var datedrafted = ((DateTime)r["DateDrafted"]).ToString("yyyy-MM-dd h:mm");
             if (id > 0)
             {
-                sql += string.Join(Environment.NewLine,
-                        "set dateformat dmy;",
+                sql = string.Join(Environment.NewLine,
                         $"update Recipe set",
                         $"StaffId = {r["StaffId"]},",
                         $"CuisineId = {r["CuisineId"]},",
                         $"RecipeName = '{r["RecipeName"]}',",
                         $"Calories = {r["Calories"]},",
-                        $"DateDrafted = '{r["DateDrafted"]}'",
+                        $"DateDrafted = '{datedrafted}'",
                         $"where RecipeId = {r["RecipeId"]}"
                     );
             }
             else
             {
-                sql += "insert Recipe(StaffId,CuisineId,RecipeName,Calories,DateDrafted)";
-                sql += $"select {r["StaffId"]},{r["CuisineId"]},'{r["RecipeName"]}',{r["Calories"]},'{r["DateDrafted"]}'";
+                sql = "insert Recipe(StaffId,CuisineId,RecipeName,Calories,DateDrafted)";
+                sql += $"select {r["StaffId"]},{r["CuisineId"]},'{r["RecipeName"]}',{r["Calories"]},'{datedrafted}'";
             }
             Debug.Print(sql);
             SQLUtility.ExecuteSql(sql);
