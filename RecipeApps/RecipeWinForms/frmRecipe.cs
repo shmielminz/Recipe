@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace RecipeWinForms
+﻿namespace RecipeWinForms
 {
     public partial class frmRecipe : Form
     {
@@ -43,14 +32,38 @@ namespace RecipeWinForms
 
         private void Save()
         {
-            Recipe.Save(dtrecipe);
-            this.Close();
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Save(dtrecipe);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Recipe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
         }
 
         private void Delete()
         {
-            Recipe.Delete(dtrecipe);
-            this.Close();
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Delete(dtrecipe);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Recipe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
         }
 
         private void BtnDelete_Click(object? sender, EventArgs e)
