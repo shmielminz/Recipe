@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿//AS Amazing job!! 90% It crashes when trying to update and save an existing recipe. Error msg cannot convert varchar to datetime...
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RecipeWinForms
+=======
+﻿namespace RecipeWinForms
+>>>>>>> 940e782e4aeaa42347da9b091700981fd7fafa43
 {
     public partial class frmRecipe : Form
     {
@@ -44,14 +48,38 @@ namespace RecipeWinForms
 
         private void Save()
         {
-            Recipe.Save(dtrecipe);
-            this.Close();
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Save(dtrecipe);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Recipe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
         }
 
         private void Delete()
         {
-            Recipe.Delete(dtrecipe);
-            this.Close();
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Delete(dtrecipe);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Recipe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
         }
 
         private void BtnDelete_Click(object? sender, EventArgs e)
