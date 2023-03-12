@@ -1,5 +1,3 @@
-using System.Data;
-
 namespace RecipeTest
 {
     public class Tests
