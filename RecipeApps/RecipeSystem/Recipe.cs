@@ -1,11 +1,6 @@
-﻿using CPUFramework;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RecipeSystem
 {
@@ -15,10 +10,13 @@ namespace RecipeSystem
         {
             DataTable dt;
             SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
-            cmd.Parameters["@RecipeName"].Value = recipename;
             if (recipename == "")
             {
-                cmd.Parameters["@All"].Value = 1;
+                SQLUtility.SetParamValue(cmd, "@All", 1);
+            }
+            else
+            {
+                SQLUtility.SetParamValue(cmd, "@RecipeName", recipename);
             }
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
@@ -28,7 +26,7 @@ namespace RecipeSystem
         {
             DataTable dt;
             SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
-            cmd.Parameters["@RecipeId"].Value = recipeid;
+            SQLUtility.SetParamValue(cmd, "@RecipeId", recipeid);
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
@@ -37,7 +35,7 @@ namespace RecipeSystem
         {
             DataTable dt;
             SqlCommand cmd = SQLUtility.GetSqlCommand("StaffGet");
-            cmd.Parameters["@All"].Value = 1;
+            SQLUtility.SetParamValue(cmd, "@All", 1);
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
@@ -46,7 +44,7 @@ namespace RecipeSystem
         {
             DataTable dt;
             SqlCommand cmd = SQLUtility.GetSqlCommand("CuisineGet");
-            cmd.Parameters["@All"].Value = 1;
+            SQLUtility.SetParamValue(cmd, "@All", 1);
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
@@ -82,8 +80,9 @@ namespace RecipeSystem
         public static void Delete(DataTable dtrecipe)
         {
             int id = (int)dtrecipe.Rows[0]["RecipeId"];
-            string sql = $"delete recipeingredient where recipeid = {id}; delete recipestep where recipeid = {id}; delete Recipe where RecipeId = {id}";
-            SQLUtility.ExecuteSql(sql);
+            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeDelete");
+            SQLUtility.SetParamValue(cmd, "@RecipeId", id);
+            SQLUtility.ExecuteSql(cmd);
         }
     }
 }

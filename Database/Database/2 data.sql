@@ -386,16 +386,16 @@ go
 ;with x as(
    select MealName = 'Breakfast bash', Course = 'Main', RecipeName = 'Cheese Bread', Main = 1
    union select 'Breakfast bash', 'Main', 'Butter Muffins', 0
-   union select 'Breakfast bash', 'Appetizer', 'Apple Yogurt Smoothie', 1
+   --union select 'Breakfast bash', 'Appetizer', 'Apple Yogurt Smoothie', 1
    union select 'Super Supper', 'Soup', 'Yemenite Chicken Soup', 1
    union select 'Super Supper', 'Main', '360-Minute Steak', 1
-   union select 'Super Supper', 'Main', 'Roasted Vegetable Yapchik', 0
-   union select 'Super Supper', 'Main', 'Eggplant Casserole Dip', 0
+   --union select 'Super Supper', 'Main', 'Roasted Vegetable Yapchik', 0
+   --union select 'Super Supper', 'Main', 'Eggplant Casserole Dip', 0
    union select 'Super Supper', 'Dessert', 'Chocolate Chip Cookies', 1
    union select 'Bruncheese', 'Main', 'Cheese Bread', 1
-   union select 'Bruncheese', 'Main', 'Eggplant Casserole Dip', 0
+   --union select 'Bruncheese', 'Main', 'Eggplant Casserole Dip', 0
    union select 'Tohameya', 'Soup', 'Yemenite Chicken Soup', 1
-   union select 'Tohameya', 'Main', 'Roasted Vegetable Yapchik', 1
+   --union select 'Tohameya', 'Main', 'Roasted Vegetable Yapchik', 1
 )
 insert MealCourseRecipe(MealCourseId,RecipeId,MainDish)
 select mc.MealCourseId, r.RecipeId, x.Main
@@ -426,16 +426,16 @@ go
 
 ;with x as(
    select CookbookName = 'Treats for two', SequenceVal = 1, RecipeName = 'Chocolate Chip Cookies'
-   union select 'Treats for two', 2, 'Apple Yogurt Smoothie'
+   --union select 'Treats for two', 2, 'Apple Yogurt Smoothie'
    union select 'Treats for two', 3, 'Cheese Bread'
-   union select 'Treats for two', 4, 'Butter Muffins'
-   union select 'When Vegetable Meet',1,'Roasted Vegetable Yapchik'
-   union select 'When Vegetable Meet',2,'Apple Yogurt Smoothie'
-   union select 'When Vegetable Meet',3,'Eggplant Casserole Dip'
-   union select 'Homemade No Time',1, 'Roasted Vegetable Yapchik'
-   union select 'Homemade No Time',2, 'Eggplant Casserole Dip'
-   union select 'Homemade No Time',3, 'Butter Muffins'
-   union select 'Homemade No Time',4, 'Chocolate Chip Cookies'
+   --union select 'Treats for two', 4, 'Butter Muffins'
+   --union select 'When Vegetable Meet',1,'Roasted Vegetable Yapchik'
+   --union select 'When Vegetable Meet',2,'Apple Yogurt Smoothie'
+   --union select 'When Vegetable Meet',3,'Eggplant Casserole Dip'
+   --union select 'Homemade No Time',4, 'Roasted Vegetable Yapchik'
+   --union select 'Homemade No Time',2, 'Eggplant Casserole Dip'
+   union select 'Homemade No Time',2, 'Butter Muffins'
+   union select 'Homemade No Time',1, 'Chocolate Chip Cookies'
    union select 'Eat To Live',1,'Cheese Bread'
    union select 'Eat To Live',2,'Butter Muffins'
 )
