@@ -431,7 +431,7 @@ go
    --union select 'Treats for two', 4, 'Butter Muffins'
    --union select 'When Vegetable Meet',1,'Roasted Vegetable Yapchik'
    --union select 'When Vegetable Meet',2,'Apple Yogurt Smoothie'
-   --union select 'When Vegetable Meet',3,'Eggplant Casserole Dip'
+   union select 'When Vegetable Meet',3,'Eggplant Casserole Dip'
    --union select 'Homemade No Time',4, 'Roasted Vegetable Yapchik'
    --union select 'Homemade No Time',2, 'Eggplant Casserole Dip'
    union select 'Homemade No Time',2, 'Butter Muffins'
