@@ -121,6 +121,9 @@ namespace RecipeTest
                         on cr.recipeid = r.recipeid
                         where mcr.mealcourserecipeid is null
                         and cr.cookbookrecipeid is null
+                        and ((r.DateArchived is not null
+                        and datediff(day,r.DateArchived,getdate()) >= 30)
+                        or r.Recipestatus = 'Drafted')
                         order by r.recipeid";
             DataTable dt = SQLUtility.GetDataTable(sql);
             int recipeid = 0;
@@ -130,7 +133,7 @@ namespace RecipeTest
                 recipeid = (int)dt.Rows[0]["recipeid"];
                 recipedesc = dt.Rows[0]["recipestatus"] + " recipe " + dt.Rows[0]["recipename"];
             }
-            Assume.That(recipeid > 0, "No recipe without meal and cookbook in DB, can't run test");
+            Assume.That(recipeid > 0, "No recipe without meal and cookbook or no archived recipes for more than 30 days in DB, can't run test");
             TestContext.WriteLine("Existing recipe " + recipedesc + " with id = " + recipeid);
             TestContext.WriteLine("Ensure that app can delete recipe with id = " + recipeid);
             Recipe.Delete(dt);
@@ -140,9 +143,67 @@ namespace RecipeTest
         }
 
         [Test]
+        public void DeletePublishedRecipe()
+        {
+            string sql = @"select top 1 r.recipeid, r.recipename, r.recipestatus 
+                        from recipe r
+                        left join mealcourserecipe mcr
+                        on mcr.recipeid = r.recipeid
+                        left join cookbookrecipe cr
+                        on cr.recipeid = r.recipeid
+                        where mcr.mealcourserecipeid is null
+                        and cr.cookbookrecipeid is null
+                        and r.RecipeStatus = 'Published'
+                        order by r.recipeid";
+            DataTable dt = SQLUtility.GetDataTable(sql);
+            int recipeid = 0;
+            string recipedesc = "";
+            if (dt.Rows.Count > 0)
+            {
+                recipeid = (int)dt.Rows[0]["recipeid"];
+                recipedesc = dt.Rows[0]["recipestatus"] + " recipe " + dt.Rows[0]["recipename"];
+            }
+            Assume.That(recipeid > 0, "No Published or non relational recipe in DB, can't run test");
+            TestContext.WriteLine("Existing recipe " + recipedesc + " with id = " + recipeid);
+            TestContext.WriteLine("Ensure that app cannot delete recipe with id = " + recipeid);
+            Exception ex = Assert.Throws<Exception>(() => Recipe.Delete(dt));
+            TestContext.WriteLine(ex.Message);
+        }
+
+        [Test]
+        public void DeleteRecipeWithArchivedRecipeLessThan30Days()
+        {
+            string sql = @"select top 1 r.recipeid, r.recipename, r.recipestatus 
+                        from recipe r
+                        left join mealcourserecipe mcr
+                        on mcr.recipeid = r.recipeid
+                        left join cookbookrecipe cr
+                        on cr.recipeid = r.recipeid
+                        where mcr.mealcourserecipeid is null
+                        and cr.cookbookrecipeid is null
+                        and (r.DateArchived is null
+                        or datediff(day,r.DateArchived,getdate()) <= 30)
+                        and r.RecipeStatus = 'Archived'
+                        order by r.recipeid";
+            DataTable dt = SQLUtility.GetDataTable(sql);
+            int recipeid = 0;
+            string recipedesc = "";
+            if (dt.Rows.Count > 0)
+            {
+                recipeid = (int)dt.Rows[0]["recipeid"];
+                recipedesc = dt.Rows[0]["recipestatus"] + " recipe " + dt.Rows[0]["recipename"];
+            }
+            Assume.That(recipeid > 0, "No non relational recipe in DB, can't run test");
+            TestContext.WriteLine("Existing recipe " + recipedesc + " with id = " + recipeid + " that has been archived for less than 30 days, or is not archived");
+            TestContext.WriteLine("Ensure that app cannot delete recipe with id = " + recipeid);
+            Exception ex = Assert.Throws<Exception>(() => Recipe.Delete(dt));
+            TestContext.WriteLine(ex.Message);
+        }
+
+        [Test]
         public void DeleteRecipeWithMealCourseRecipe()
         {
-            DataTable dt = SQLUtility.GetDataTable("select top 1 r.recipeid, recipename, recipestatus from recipe r join mealcourserecipe mcr on mcr.recipeid = r.recipeid left join cookbookrecipe cr on r.recipeid = cr.recipeid where cr.cookbookrecipeid is null");
+            DataTable dt = SQLUtility.GetDataTable("select top 1 r.recipeid, recipename, recipestatus from recipe r join mealcourserecipe mcr on mcr.recipeid = r.recipeid where r.RecipeStatus <> 'published'");
             int recipeid = 0;
             string recipedesc = "";
             if (dt.Rows.Count > 0)
@@ -160,7 +221,7 @@ namespace RecipeTest
         [Test]
         public void DeleteRecipeWithCookbookRecipe()
         {
-            DataTable dt = SQLUtility.GetDataTable("select top 1 r.recipeid, recipename, recipestatus from recipe r join cookbookrecipe cr on r.recipeid = cr.recipeid left join mealcourserecipe mcr on mcr.recipeid = r.recipeid where mcr.mealcourserecipeid is null");
+            DataTable dt = SQLUtility.GetDataTable("select top 1 r.recipeid, recipename, recipestatus from recipe r join cookbookrecipe cr on r.recipeid = cr.recipeid");
             int recipeid = 0;
             string recipedesc = "";
             if (dt.Rows.Count > 0)

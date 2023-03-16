@@ -45,14 +45,14 @@ from x
 go
 
 ;with x as(
-   select Username = 'johnsmith@heartyhearth.com', RecipeName = 'Chocolate Chip Cookies', Cuisine = 'American', Calories = 148, Drafted = dateadd(month,-2,getdate()), Published = getdate(), Archived = null
-   union select 'mike@heartyhearth.com', 'Apple Yogurt Smoothie', 'French', 60, getdate(), null, null
-   union select 'mike@heartyhearth.com', 'Cheese Bread', 'English', 71, dateadd(month,-2,getdate()), null, getdate()
-   union select 'robert@heartyhearth.com', 'Butter Muffins', 'American', 170, dateadd(day,-10,getdate()), dateadd(day,-1,getdate()), getdate()
-   union select 'johnroberts@heartyhearth.com', '360-Minute Steak', 'American', 210, dateadd(day,-10,getdate()), null, getdate()
-   union select 'mike@heartyhearth.com', 'Roasted Vegetable Yapchik', 'English', 60, dateadd(day,-2,getdate()), null, null
+   select Username = 'johnsmith@heartyhearth.com', RecipeName = 'Chocolate Chip Cookies', Cuisine = 'American', Calories = 148, Drafted = dateadd(month,-3,getdate()), Published = dateadd(month,-2,getdate()), Archived = null
+   union select 'mike@heartyhearth.com', 'Apple Yogurt Smoothie', 'French', 60, dateadd(day,-45,getdate()), null, dateadd(day,-45,getdate())
+   union select 'mike@heartyhearth.com', 'Cheese Bread', 'English', 71, dateadd(month,-2,getdate()), getdate(), null
+   union select 'robert@heartyhearth.com', 'Butter Muffins', 'American', 170, dateadd(day,-50,getdate()), dateadd(day,-45,getdate()), getdate()
+   union select 'johnroberts@heartyhearth.com', '360-Minute Steak', 'American', 210, dateadd(day,-50,getdate()), null, dateadd(day,-45,getdate())
+   union select 'mike@heartyhearth.com', 'Roasted Vegetable Yapchik', 'English', 60, dateadd(day,-50,getdate()), null, null
    union select 'johnroberts@heartyhearth.com', 'Yemenite Chicken Soup', 'Middle East', 150, dateadd(day,-25,getdate()), getdate(), null
-   union select 'johnsmith@heartyhearth.com', 'Eggplant Casserole Dip', 'French', 75, dateadd(month,-2,getdate()), null, getdate()
+   union select 'johnsmith@heartyhearth.com', 'Eggplant Casserole Dip', 'French', 75, dateadd(month,-2,getdate()), dateadd(day,-35,getdate()), null
 )
 insert Recipe(StaffId,CuisineId,RecipeName,Calories,DateDrafted,DatePublished,DateArchived)
 select s.StaffId, c.CuisineId, x.RecipeName, x.Calories, x.Drafted, x.Published, x.Archived
@@ -386,15 +386,15 @@ go
 ;with x as(
    select MealName = 'Breakfast bash', Course = 'Main', RecipeName = 'Cheese Bread', Main = 1
    union select 'Breakfast bash', 'Main', 'Butter Muffins', 0
-   --union select 'Breakfast bash', 'Appetizer', 'Apple Yogurt Smoothie', 1
-   union select 'Super Supper', 'Soup', 'Yemenite Chicken Soup', 1
+   union select 'Breakfast bash', 'Appetizer', 'Apple Yogurt Smoothie', 1
+   --union select 'Super Supper', 'Soup', 'Yemenite Chicken Soup', 1
    --union select 'Super Supper', 'Main', '360-Minute Steak', 1
    --union select 'Super Supper', 'Main', 'Roasted Vegetable Yapchik', 0
-   --union select 'Super Supper', 'Main', 'Eggplant Casserole Dip', 0
+   union select 'Super Supper', 'Main', 'Eggplant Casserole Dip', 0
    union select 'Super Supper', 'Dessert', 'Chocolate Chip Cookies', 1
    union select 'Bruncheese', 'Main', 'Cheese Bread', 1
-   --union select 'Bruncheese', 'Main', 'Eggplant Casserole Dip', 0
-   union select 'Tohameya', 'Soup', 'Yemenite Chicken Soup', 1
+   union select 'Bruncheese', 'Main', 'Eggplant Casserole Dip', 0
+   --union select 'Tohameya', 'Soup', 'Yemenite Chicken Soup', 1
    --union select 'Tohameya', 'Main', 'Roasted Vegetable Yapchik', 1
 )
 insert MealCourseRecipe(MealCourseId,RecipeId,MainDish)
@@ -433,11 +433,11 @@ go
    --union select 'When Vegetable Meet',2,'Apple Yogurt Smoothie'
    union select 'When Vegetable Meet',3,'Eggplant Casserole Dip'
    --union select 'Homemade No Time',4, 'Roasted Vegetable Yapchik'
-   --union select 'Homemade No Time',2, 'Eggplant Casserole Dip'
-   union select 'Homemade No Time',2, 'Butter Muffins'
+   union select 'Homemade No Time',2, 'Eggplant Casserole Dip'
+   --union select 'Homemade No Time',3, 'Butter Muffins'
    union select 'Homemade No Time',1, 'Chocolate Chip Cookies'
    union select 'Eat To Live',1,'Cheese Bread'
-   union select 'Eat To Live',2,'Butter Muffins'
+   --union select 'Eat To Live',2,'Butter Muffins'
 )
 insert CookbookRecipe(CookbookId,RecipeId,SequenceVal)
 select c.CookbookId, r.RecipeId, x.SequenceVal
