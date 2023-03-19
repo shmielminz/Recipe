@@ -171,7 +171,7 @@ namespace RecipeTest
         }
 
         [Test]
-        public void DeleteRecipeWithArchivedRecipeLessThan30Days()
+        public void DeleteRecipeThatsArchivedLessThan30Days()
         {
             string sql = @"select top 1 r.recipeid, r.recipename, r.recipestatus 
                         from recipe r
@@ -181,8 +181,7 @@ namespace RecipeTest
                         on cr.recipeid = r.recipeid
                         where mcr.mealcourserecipeid is null
                         and cr.cookbookrecipeid is null
-                        and (r.DateArchived is null
-                        or datediff(day,r.DateArchived,getdate()) <= 30)
+                        and datediff(day,r.DateArchived,getdate()) <= 30
                         and r.RecipeStatus = 'Archived'
                         order by r.recipeid";
             DataTable dt = SQLUtility.GetDataTable(sql);
@@ -194,7 +193,7 @@ namespace RecipeTest
                 recipedesc = dt.Rows[0]["recipestatus"] + " recipe " + dt.Rows[0]["recipename"];
             }
             Assume.That(recipeid > 0, "No non relational recipe in DB, can't run test");
-            TestContext.WriteLine("Existing recipe " + recipedesc + " with id = " + recipeid + " that has been archived for less than 30 days, or is not archived");
+            TestContext.WriteLine("Existing recipe " + recipedesc + " with id = " + recipeid + " that has been archived for less than 30 days.");
             TestContext.WriteLine("Ensure that app cannot delete recipe with id = " + recipeid);
             Exception ex = Assert.Throws<Exception>(() => Recipe.Delete(dt));
             TestContext.WriteLine(ex.Message);
