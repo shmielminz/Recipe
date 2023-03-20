@@ -47,30 +47,15 @@
 
         public static void Save(DataTable dtrecipe)
         {
-            string sql;
-            SQLUtility.DebugPrintDataTable(dtrecipe);
+            if (dtrecipe.Rows.Count == 0)
+            {
+                throw new Exception("Cannot call Recipe Save method, there were no recipes returned from database.");
+            }
+            
             DataRow r = dtrecipe.Rows[0];
-            int id = (int)r["RecipeId"];
-            var datedrafted = ((DateTime)r["DateDrafted"]).ToString("yyyy-MM-dd h:mm");
-            if (id > 0)
-            {
-                sql = string.Join(Environment.NewLine,
-                        $"update Recipe set",
-                        $"StaffId = {r["StaffId"]},",
-                        $"CuisineId = {r["CuisineId"]},",
-                        $"RecipeName = '{r["RecipeName"]}',",
-                        $"Calories = {r["Calories"]},",
-                        $"DateDrafted = '{datedrafted}'",
-                        $"where RecipeId = {r["RecipeId"]}"
-                    );
-            }
-            else
-            {
-                sql = "insert Recipe(StaffId,CuisineId,RecipeName,Calories,DateDrafted)";
-                sql += $"select {r["StaffId"]},{r["CuisineId"]},'{r["RecipeName"]}',{r["Calories"]},'{datedrafted}'";
-            }
-            Debug.Print(sql);
-            SQLUtility.ExecuteSql(sql);
+            //var datedrafted = ((DateTime)r["DateDrafted"]).ToString("yyyy-MM-dd h:mm");
+
+            SQLUtility.SaveDataRow(r, "RecipeUpdate");
         }
 
         public static void Delete(DataTable dtrecipe)
