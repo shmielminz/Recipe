@@ -1,4 +1,4 @@
-declare @tablename varchar(50) = 'president'
+declare @tablename varchar(50) = 'recipe'
 
 select 
 	concat('@', 
@@ -34,6 +34,18 @@ and c.COLUMN_NAME not in(select co.name from sys.objects o join sys.columns co o
 select @insertlist
 
 select concat(c.COLUMN_NAME, ' = @', c.COLUMN_NAME, ', ')
+from INFORMATION_SCHEMA.COLUMNS c
+where c.TABLE_NAME = @tablename
+and c.COLUMN_NAME <> c.TABLE_NAME + 'Id'
+and c.COLUMN_NAME not in(select co.name from sys.objects o join sys.columns co on o.object_id = co.object_id where co.is_computed = 1)
+
+select concat('@', c.COLUMN_NAME, ' = ', c.COLUMN_NAME, ', ')
+from INFORMATION_SCHEMA.COLUMNS c
+where c.TABLE_NAME = @tablename
+and c.COLUMN_NAME <> c.TABLE_NAME + 'Id'
+and c.COLUMN_NAME not in(select co.name from sys.objects o join sys.columns co on o.object_id = co.object_id where co.is_computed = 1)
+
+select concat('@', c.COLUMN_NAME, ' = @', c.COLUMN_NAME, ', ')
 from INFORMATION_SCHEMA.COLUMNS c
 where c.TABLE_NAME = @tablename
 and c.COLUMN_NAME <> c.TABLE_NAME + 'Id'

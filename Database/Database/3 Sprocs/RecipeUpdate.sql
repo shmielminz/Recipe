@@ -5,8 +5,8 @@ create or alter procedure dbo.RecipeUpdate(
 	@RecipeName varchar(100),
 	@Calories int,
 	@DateDrafted datetime,
-	@DatePublished datetime,
-	@DateArchived datetime,
+	@DatePublished datetime = null,
+	@DateArchived datetime = null,
 	@Message varchar(500) = '' output
 )
 as

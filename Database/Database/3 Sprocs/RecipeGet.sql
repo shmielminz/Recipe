@@ -5,7 +5,7 @@ create or alter procedure dbo.RecipeGet(
 )
 as
 begin
-	select r.RecipeId, r.StaffId, r.CuisineId, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus
+	select r.RecipeId, r.StaffId, r.CuisineId, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, RecipeDesc = dbo.RecipeDesc(r.RecipeId)
 	from Recipe r
 	where r.RecipeId = @RecipeId
 	or (@RecipeName <> '' and r.RecipeName like '%' + @RecipeName + '%')
