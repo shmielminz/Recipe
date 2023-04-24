@@ -13,7 +13,7 @@ namespace RecipeWinForms
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             DbManager.SetConnectionString("Server=.\\MSSQLSERVER01;Database=RecipeDB;Trusted_Connection=True;");
-            Application.Run(new frmSearch());
+            Application.Run(new frmMain());
         }
     }
 }

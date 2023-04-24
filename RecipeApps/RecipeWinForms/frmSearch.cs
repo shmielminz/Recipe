@@ -8,7 +8,7 @@
             btnSearch.Click += BtnSearch_Click;
             gRecipes.CellDoubleClick += GRecipes_CellDoubleClick;
             btnNew.Click += BtnNew_Click;
-            WindowsFormsUtility.FormatGridForSearchResults(gRecipes);
+            WindowsFormsUtility.FormatGridForSearchResults(gRecipes, "Recipe");
         }
 
         private void SearchForRecipe(string recipe)

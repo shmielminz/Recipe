@@ -5,11 +5,28 @@ create or alter procedure dbo.RecipeGet(
 )
 as
 begin
-	select r.RecipeId, r.StaffId, r.CuisineId, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, RecipeDesc = dbo.RecipeDesc(r.RecipeId)
+	select 
+		r.RecipeId, 
+		r.StaffId, 
+		r.CuisineId, 
+		r.RecipeName, 
+		r.Calories, 
+		r.DateDrafted, 
+		r.DatePublished, 
+		r.DateArchived, 
+		r.RecipeStatus, 
+		NumIngredient = count(distinct ri.RecipeIngredientId), 
+		NumSteps = count(distinct rs.RecipeStepId), 
+		RecipeDesc = dbo.RecipeDesc(r.RecipeId)
 	from Recipe r
+	join RecipeIngredient ri
+	on ri.RecipeId = r.RecipeId
+	join RecipeStep rs
+	on rs.RecipeId = r.RecipeId
 	where r.RecipeId = @RecipeId
 	or (@RecipeName <> '' and r.RecipeName like '%' + @RecipeName + '%')
 	or @All = 1
+	group by r.RecipeId, r.StaffId, r.CuisineId, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus
 	order by r.RecipeStatus, r.RecipeName
 end
 go
