@@ -4,9 +4,9 @@ create or alter procedure dbo.RecipeUpdate(
 	@CuisineId int,
 	@RecipeName varchar(100),
 	@Calories int,
-	@DateDrafted datetime = getdate,
-	@DatePublished datetime = null,
-	@DateArchived datetime = null,
+	@DateDrafted datetime = null output,
+	@DatePublished datetime = null output,
+	@DateArchived datetime = null output,
 	@RecipeStatus varchar(20) output,
 	@Message varchar(500) = '' output
 )
@@ -14,7 +14,7 @@ as
 begin
 	declare @return int = 0
 
-	select @RecipeId = isnull(@RecipeId,0), @DatePublished = nullif(@DatePublished,''), @DateArchived = nullif(@DateArchived,'')
+	select @RecipeId = isnull(@RecipeId,0), @DatePublished = nullif(@DatePublished,''), @DateArchived = nullif(@DateArchived,''), @DateDrafted = isnull(@DateDrafted,getdate())
 
 	if @RecipeId = 0
 	begin
@@ -25,7 +25,7 @@ begin
 	end
 	else
 	begin
-		update Recipe 
+		update Recipe
 		set
 			StaffId = @StaffId, 
 			CuisineId = @CuisineId, 

@@ -21,7 +21,7 @@
         public static DataTable Load(int recipeid)
         {
             DataTable dt;
-            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
+            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeDetailsGet");
             SQLUtility.SetParamValue(cmd, "@RecipeId", recipeid);
             dt = SQLUtility.GetDataTable(cmd);
             return dt;

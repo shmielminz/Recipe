@@ -23,7 +23,7 @@
             int id = 0;
             if (rowindex > -1)
             {
-                id = (int)gRecipes.Rows[rowindex].Cells["RecipeId"].Value;
+                id = WindowsFormsUtility.GetIdFromGrid(gRecipes, rowindex, "RecipeId");
             }
             if (this.MdiParent != null && this.MdiParent is frmMain)
             {
