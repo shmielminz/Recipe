@@ -1,13 +1,13 @@
 ﻿namespace RecipeWinForms
 {
-    public partial class frmSearch : Form
+    public partial class frmRecipeList : Form
     {
-        public frmSearch()
+        public frmRecipeList()
         {
             InitializeComponent();
-            btnSearch.Click += BtnSearch_Click;
             gRecipes.CellDoubleClick += GRecipes_CellDoubleClick;
             btnNew.Click += BtnNew_Click;
+            this.Activated += FrmRecipeList_Activated;
             WindowsFormsUtility.FormatGridForSearchResults(gRecipes, "Recipe");
         }
 
@@ -25,8 +25,10 @@
             {
                 id = (int)gRecipes.Rows[rowindex].Cells["RecipeId"].Value;
             }
-            frmRecipe frm = new();
-            frm.ShowForm(id);
+            if (this.MdiParent != null && this.MdiParent is frmMain)
+            {
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
+            }
         }
 
         private void GRecipes_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
@@ -34,14 +36,14 @@
             ShowRecipeForm(e.RowIndex);
         }
 
-        private void BtnSearch_Click(object? sender, EventArgs e)
-        {
-            SearchForRecipe(txtRecipe.Text);
-        }
-
         private void BtnNew_Click(object? sender, EventArgs e)
         {
             ShowRecipeForm(-1);
+        }
+
+        private void FrmRecipeList_Activated(object? sender, EventArgs e)
+        {
+            SearchForRecipe("");
         }
     }
 }

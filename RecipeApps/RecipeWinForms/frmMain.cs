@@ -24,7 +24,7 @@
             OpenForm(typeof(frmDashboard));
         }
 
-        private void OpenForm(Type frmtype, int pkvalue = 0)
+        public void OpenForm(Type frmtype, int pkvalue = 0)
         {
             bool exists = WindowsFormsUtility.IsFormOpen(frmtype, pkvalue);
 
@@ -36,10 +36,16 @@
                     frmDashboard f = new();
                     newfrm = f;
                 }
-                else if (frmtype == typeof(frmSearch))
+                else if (frmtype == typeof(frmRecipeList))
                 {
-                    frmSearch f = new();
+                    frmRecipeList f = new();
                     newfrm = f;
+                }
+                else if (frmtype == typeof(frmRecipe))
+                {
+                    frmRecipe f = new();
+                    newfrm = f;
+                    f.LoadForm(pkvalue);
                 }
 
                 if (newfrm != null)
@@ -111,12 +117,12 @@
 
         private void MnuNewRecipe_Click(object? sender, EventArgs e)
         {
-            
+            OpenForm(typeof(frmRecipe));
         }
 
         private void MnuRecipeList_Click(object? sender, EventArgs e)
         {
-            OpenForm(typeof(frmSearch));
+            OpenForm(typeof(frmRecipeList));
         }
     }
 }
