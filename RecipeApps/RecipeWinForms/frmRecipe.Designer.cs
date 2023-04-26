@@ -365,6 +365,7 @@
             this.txtDateArchived.Name = "txtDateArchived";
             this.txtDateArchived.Size = new System.Drawing.Size(188, 39);
             this.txtDateArchived.TabIndex = 5;
+            this.txtDateArchived.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtDatePublished
             // 
@@ -376,6 +377,7 @@
             this.txtDatePublished.Name = "txtDatePublished";
             this.txtDatePublished.Size = new System.Drawing.Size(186, 39);
             this.txtDatePublished.TabIndex = 4;
+            this.txtDatePublished.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblDateArchived
             // 
@@ -420,6 +422,7 @@
             this.txtDateDrafted.Name = "txtDateDrafted";
             this.txtDateDrafted.Size = new System.Drawing.Size(186, 39);
             this.txtDateDrafted.TabIndex = 3;
+            this.txtDateDrafted.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtRecipeStatus
             // 

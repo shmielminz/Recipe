@@ -1,9 +1,12 @@
+using CPUFramework;
+
 namespace RecipeWinForms
 {
     public partial class frmRecipe : Form
     {
         DataTable dtrecipe = new();
         BindingSource bindsource = new();
+        int recipeid = 0;
         public frmRecipe()
         {
             InitializeComponent();
@@ -11,8 +14,10 @@ namespace RecipeWinForms
             btnDelete.Click += BtnDelete_Click;
         }
 
-        public void LoadForm(int recipeid)
+        public void LoadForm(int recipeidval)
         {
+            recipeid = recipeidval;
+            this.Tag = recipeid;
             dtrecipe = Recipe.Load(recipeid);
             bindsource.DataSource = dtrecipe;
             if(recipeid == 0)
@@ -27,6 +32,7 @@ namespace RecipeWinForms
             WindowsFormsUtility.SetControlBinding(txtDatePublished, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateArchived, bindsource);
             WindowsFormsUtility.SetControlBinding(txtRecipeStatus, bindsource);
+            this.Text = GetRecipeDescription();
         }
 
         private void Save()
@@ -67,6 +73,17 @@ namespace RecipeWinForms
             {
                 Application.UseWaitCursor = false;
             }
+        }
+
+        private string GetRecipeDescription()
+        {
+            string value = "New Recipe";
+            int pkvalue = SQLUtility.GetValueFromFirstRowAsInt(dtrecipe, "RecipeId");
+            if (pkvalue > 0)
+            {
+                value = "Recipe - " + SQLUtility.GetValueFromFirstRowAsString(dtrecipe, "RecipeName");
+            }
+            return value;
         }
 
         private void BtnDelete_Click(object? sender, EventArgs e)
