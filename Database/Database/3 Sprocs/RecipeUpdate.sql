@@ -4,9 +4,10 @@ create or alter procedure dbo.RecipeUpdate(
 	@CuisineId int,
 	@RecipeName varchar(100),
 	@Calories int,
-	@DateDrafted datetime,
+	@DateDrafted datetime = getdate,
 	@DatePublished datetime = null,
 	@DateArchived datetime = null,
+	@RecipeStatus varchar(20) output,
 	@Message varchar(500) = '' output
 )
 as
@@ -35,6 +36,8 @@ begin
 			DateArchived = @DateArchived
 		where RecipeId = @RecipeId
 	end
+
+	select @RecipeStatus = r.RecipeStatus from Recipe r where r.RecipeId = @RecipeId
 
 	return @return
 end

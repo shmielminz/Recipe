@@ -53,7 +53,6 @@
             }
             
             DataRow r = dtrecipe.Rows[0];
-            //var datedrafted = ((DateTime)r["DateDrafted"]).ToString("yyyy-MM-dd h:mm");
 
             SQLUtility.SaveDataRow(r, "RecipeUpdate");
         }

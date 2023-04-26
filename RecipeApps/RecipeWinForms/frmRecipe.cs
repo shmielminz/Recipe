@@ -25,7 +25,9 @@ namespace RecipeWinForms
                 dtrecipe.Rows.Add();
             }
             DataTable dtcuisine = Recipe.GetCuisineList();
+            DataTable dtstaff = Recipe.GetStaffList();
             WindowsFormsUtility.SetControlBinding(txtRecipeName, bindsource);
+            WindowsFormsUtility.SetListBinding(lstUsername, dtstaff, dtrecipe, "Staff");
             WindowsFormsUtility.SetListBinding(lstCuisineType, dtcuisine, dtrecipe, "Cuisine");
             WindowsFormsUtility.SetControlBinding(txtCalories, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateDrafted, bindsource);
@@ -44,7 +46,7 @@ namespace RecipeWinForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Recipe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -54,7 +56,7 @@ namespace RecipeWinForms
 
         private void Delete()
         {
-            var response = MessageBox.Show("Are you sure you want to delete this Recipe?", "Recipe", MessageBoxButtons.YesNo);
+            var response = MessageBox.Show("Are you sure you want to delete this Recipe?", Application.ProductName, MessageBoxButtons.YesNo);
             if (response == DialogResult.No)
             {
                 return;
@@ -67,7 +69,7 @@ namespace RecipeWinForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Recipe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
