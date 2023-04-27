@@ -7,6 +7,8 @@ as
 begin
 	declare @return int = 0
 
+	select @All = isnull(@All,0), @RecipeId = isnull(@RecipeId,0)
+
 	select 
 		r.RecipeId, 
 		r.RecipeName,

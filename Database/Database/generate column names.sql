@@ -1,4 +1,4 @@
-declare @tablename varchar(50) = 'recipe'
+declare @tablename varchar(50) = 'staff'
 
 select 
 	concat('@', 
@@ -12,6 +12,7 @@ select
 from INFORMATION_SCHEMA.COLUMNS c
 where c.TABLE_NAME = @tablename
 and c.COLUMN_NAME not in(select co.name from sys.objects o join sys.columns co on o.object_id = co.object_id where co.is_computed = 1)
+union select '@Message varchar(500) = '''' output'
 
 declare @insertlist varchar(5000) = ''
 
