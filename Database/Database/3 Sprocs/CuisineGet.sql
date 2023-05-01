@@ -1,15 +1,24 @@
 create or alter procedure dbo.CuisineGet(
 	@All bit = 0, 
 	@CuisineId int = 0, 
-	@CuisineType varchar(25) = ''
+	@IncludeBlank bit = 0,
+	@Message varchar(500) = '' output
 )
 as
 begin
+	declare @return int = 0
+
+	select @CuisineId = isnull(@CuisineId,0), @All = isnull(@All,0), @IncludeBlank = isnull(@IncludeBlank,0)
+
 	select c.CuisineId, c.CuisineType
 	from Cuisine c
 	where c.CuisineId = @CuisineId
 	or @All = 1
-	or (@CuisineType <> '' and c.CuisineType like '%' + @CuisineType + '%')
+	union select 0, ' '
+	where @IncludeBlank = 1
+	order by c.CuisineId
+
+	return @return
 end
 go
 /*

@@ -14,7 +14,7 @@ begin
 	from Staff s
 	where s.StaffId = @StaffId
 	or @All = 1
-	union select 0,'','',''
+	union select 0,' ',' ',' '
 	where @IncludeBlank = 1
 	order by s.StaffId
 

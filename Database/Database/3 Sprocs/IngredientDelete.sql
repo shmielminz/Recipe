@@ -1,10 +1,12 @@
 create or alter proc dbo.IngerdientDelete(
-	@IngredientId int,
+	@IngredientId int = 0,
 	@Message varchar(500) = '' output
 )
 as
 begin
 	declare @return int = 0
+
+	select @IngredientId = isnull(@IngredientId,0)
 
 	begin try
 		begin tran

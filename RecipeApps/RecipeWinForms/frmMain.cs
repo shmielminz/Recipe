@@ -47,6 +47,17 @@
                     newfrm = f;
                     f.LoadForm(pkvalue);
                 }
+                else if (frmtype == typeof(frmChangeRecipeStatus))
+                {
+                    frmChangeRecipeStatus f = new();
+                    newfrm = f;
+                    f.LoadForm(pkvalue);
+                }
+                else if (frmtype == typeof(frmCloneRecipe))
+                {
+                    frmCloneRecipe f = new();
+                    newfrm = f;
+                }
 
                 if (newfrm != null)
                 {
@@ -112,7 +123,7 @@
 
         private void MnuCloneRecipe_Click(object? sender, EventArgs e)
         {
-            
+            OpenForm(typeof(frmCloneRecipe));
         }
 
         private void MnuNewRecipe_Click(object? sender, EventArgs e)

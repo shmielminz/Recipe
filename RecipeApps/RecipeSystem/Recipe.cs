@@ -45,6 +45,22 @@
             return dt;
         }
 
+        public static DataTable GetRecipeDesc()
+        {
+            DataTable dt;
+            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeDetailsGet");
+            SQLUtility.SetParamValue(cmd, "@All", 1);
+            SQLUtility.SetParamValue(cmd, "@IncludeBlank", 1);
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
+        }
+
+        public static DataRow CloneRecipe(DataRow row)
+        {
+            SQLUtility.SaveDataRow(row, "CloneRecipe");
+            return row;
+        }
+
         public static void Save(DataTable dtrecipe)
         {
             if (dtrecipe.Rows.Count == 0)

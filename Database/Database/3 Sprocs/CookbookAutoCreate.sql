@@ -1,5 +1,5 @@
 create or alter proc dbo.CookbookAutoCreate(
-	@StaffId int,
+	@StaffId int = 0,
 	@CookbookId int output,
 	@Message varchar(500) = '' output
 )

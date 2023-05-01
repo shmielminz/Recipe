@@ -1,5 +1,5 @@
 create or alter proc dbo.StaffDelete(
-	@StaffId int,
+	@StaffId int = 0,
 	@Message varchar(500) = '' output
 )
 as

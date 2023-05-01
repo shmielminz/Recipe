@@ -1,10 +1,12 @@
 create or alter proc dbo.CourseDelete(
-	@CourseId int,
+	@CourseId int = 0,
 	@Message varchar(500) = '' output
 )
 as
 begin
 	declare @return int = 0
+
+	select @CourseId = ISNULL(@CourseId,0)
 
 	begin try
 		begin tran

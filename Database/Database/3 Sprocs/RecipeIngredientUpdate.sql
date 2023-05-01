@@ -1,18 +1,25 @@
 create or alter proc dbo.RecipeIngredientUpdate(
-	@RecipeIngredientId int output,
-	@IngredientId int,
-	@MeasurementId int,
-	@MeasurementQty decimal(4,2),
-	@RecipeId int,
-	@SequenceVal int,
-	@SpecialInstruction varchar(50),
+	@RecipeIngredientId int = 0 output,
+	@IngredientId int = 0,
+	@MeasurementId int = 0,
+	@MeasurementQty decimal(4,2) = 0,
+	@RecipeId int = 0,
+	@SequenceVal int = 0,
+	@SpecialInstruction varchar(50) = '',
 	@Message varchar(500) = '' output
 )
 as
 begin
 	declare @return int = 0
 
-	select @RecipeIngredientId = ISNULL(@RecipeIngredientId,0), @SpecialInstruction = isnull(@SpecialInstruction,'')
+	select 
+		@RecipeIngredientId = ISNULL(@RecipeIngredientId,0), 
+		@IngredientId = isnull(@IngredientId,0), 
+		@MeasurementId = nullif(@MeasurementId,0), 
+		@MeasurementQty = isnull(@MeasurementQty,0),
+		@RecipeId = isnull(@RecipeId,0),
+		@SequenceVal = isnull(@SequenceVal,0),
+		@SpecialInstruction = isnull(@SpecialInstruction,'')
 
 	if @RecipeIngredientId = 0
 	begin

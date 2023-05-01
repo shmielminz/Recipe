@@ -1,13 +1,13 @@
 create or alter proc dbo.CuisineUpdate(
-	@CuisineId int output,
-	@CuisineType varchar(25),
+	@CuisineId int = 0 output,
+	@CuisineType varchar(25) = '',
 	@Message varchar(500) = '' output
 )
 as
 begin
 	declare @return int = 0
 
-	select @CuisineId = ISNULL(@CuisineId,0)
+	select @CuisineId = ISNULL(@CuisineId,0), @CuisineType = isnull(@CuisineType,'')
 
 	if @CuisineId = 0
 	begin

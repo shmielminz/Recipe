@@ -7,9 +7,9 @@ begin
 
 	select DashboardType = 'Recipes', DashboardText = count(*)
 	from Recipe
-	union select 'Meal', count(*)
+	union select 'Meals', count(*)
 	from Meal
-	union select 'Cookbook', count(*)
+	union select 'Cookbooks', count(*)
 	from Cookbook
 
 	return @return

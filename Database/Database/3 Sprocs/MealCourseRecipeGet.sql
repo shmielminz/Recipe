@@ -1,5 +1,5 @@
 create or alter proc dbo.MealCourseRecipeGet(
-	@MealCourseRecipeId int,
+	@MealCourseRecipeId int = 0,
 	@All bit = 0,
 	@IncludeBlank bit = 0,
 	@Message varchar(500) = '' output

@@ -8,7 +8,7 @@ as
 begin
 	declare @return int = 0
 
-	select @All = isnull(@All,0), @IncludeBlank = isnull(@IncludeBlank,0)
+	select @All = isnull(@All,0), @IncludeBlank = isnull(@IncludeBlank,0), @StaffId = ISNULL(@StaffId,0)
 
 	select m.MealId, s.StaffId, m.MealName, m.DateCreated, m.Active, s.Username
 	from Meal m
@@ -16,7 +16,7 @@ begin
 	on s.StaffId = m.StaffId
 	where s.StaffId = @StaffId
 	or @All = 1
-	union select 0,0,'',null,null,''
+	union select 0,0,' ',null,null,' '
 	where @IncludeBlank = 1
 	order by m.MealId
 

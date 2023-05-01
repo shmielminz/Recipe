@@ -1,5 +1,5 @@
 create or alter proc dbo.MeasurementGet(
-	@MeasurementId int,
+	@MeasurementId int = 0,
 	@All bit = 0,
 	@IncludeBlank bit = 0,
 	@Message varchar(500) = '' output
@@ -14,7 +14,7 @@ begin
 	from Measurement m
 	where m.MeasurementId = @MeasurementId
 	or @All = 1
-	union select 0,''
+	union select 0,' '
 	where @IncludeBlank = 1
 	order by m.MeasurementId
 

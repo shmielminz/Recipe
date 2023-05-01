@@ -1,15 +1,15 @@
 create or alter proc dbo.RecipeStepUpdate(
-	@RecipeStepId int output,
-	@Instruction varchar(200),
-	@RecipeId int,
-	@SequenceVal int,
+	@RecipeStepId int = 0 output,
+	@Instruction varchar(200) = '',
+	@RecipeId int = 0,
+	@SequenceVal int = 0,
 	@Message varchar(500) = '' output
 )
 as
 begin
 	declare @return int = 0
 
-	select @RecipeStepId = ISNULL(@RecipeStepId,0)
+	select @RecipeStepId = ISNULL(@RecipeStepId,0), @Instruction = isnull(@Instruction,''), @RecipeId = isnull(@RecipeId,0), @SequenceVal = isnull(@SequenceVal,0)
 
 	if @RecipeStepId = 0
 	begin

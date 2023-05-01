@@ -1,8 +1,8 @@
 create or alter proc dbo.MealUpdate(
-	@MealId int output,
-	@StaffId int,
-	@MealName varchar(100),
-	@Active bit,
+	@MealId int = 0 output,
+	@StaffId int = 0,
+	@MealName varchar(100) = '',
+	@Active bit = 0,
 	@DateCreated date = null output,
 	@Message varchar(500) = '' output
 )
@@ -10,7 +10,7 @@ as
 begin
 	declare @return int = 0
 
-	select @MealId = ISNULL(@MealId,0), @DateCreated = isnull(@DateCreated,GETDATE())
+	select @MealId = ISNULL(@MealId,0), @DateCreated = isnull(@DateCreated,GETDATE()), @StaffId = ISNULL(@StaffId,0), @MealName = isnull(@MealName,''), @Active = isnull(@Active,0)
 
 	if @MealId = 0
 	begin

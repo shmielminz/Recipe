@@ -1,20 +1,28 @@
 create or alter procedure dbo.RecipeUpdate(
-	@RecipeId int output,
-	@StaffId int,
-	@CuisineId int,
-	@RecipeName varchar(100),
-	@Calories int,
+	@RecipeId int = 0 output,
+	@StaffId int = 0,
+	@CuisineId int = 0,
+	@RecipeName varchar(100) = '',
+	@Calories int = 0,
 	@DateDrafted datetime = null output,
 	@DatePublished datetime = null output,
 	@DateArchived datetime = null output,
-	@RecipeStatus varchar(20) output,
+	@RecipeStatus varchar(20) = '' output,
 	@Message varchar(500) = '' output
 )
 as
 begin
 	declare @return int = 0
 
-	select @RecipeId = isnull(@RecipeId,0), @DatePublished = nullif(@DatePublished,''), @DateArchived = nullif(@DateArchived,''), @DateDrafted = isnull(@DateDrafted,getdate())
+	select 
+		@RecipeId = isnull(@RecipeId,0), 
+		@StaffId = isnull(@StaffId,0),
+		@CuisineId = isnull(@CuisineId,0),
+		@RecipeName = isnull(@RecipeName,''),
+		@Calories = isnull(@Calories,0),
+		@DatePublished = nullif(@DatePublished,''), 
+		@DateArchived = nullif(@DateArchived,''), 
+		@DateDrafted = isnull(@DateDrafted,getdate())
 
 	if @RecipeId = 0
 	begin

@@ -1,13 +1,13 @@
 create or alter proc dbo.MeasurementUpdate(
-	@MeasurementId int output,
-	@MeasurementType varchar(10),
+	@MeasurementId int = 0 output,
+	@MeasurementType varchar(10) = '',
 	@Message varchar(500) = '' output
 )
 as
 begin
 	declare @return int = 0
 
-	select @MeasurementId = ISNULL(@MeasurementId,0)
+	select @MeasurementId = ISNULL(@MeasurementId,0), @MeasurementType = isnull(@MeasurementType,'')
 
 	if @MeasurementId = 0
 	begin

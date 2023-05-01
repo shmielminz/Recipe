@@ -1,5 +1,5 @@
 create or alter proc dbo.MeasurementDelete(
-	@MeasurementId int,
+	@MeasurementId int = 0,
 	@Message varchar(500) = '' output
 )
 as

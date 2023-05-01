@@ -1,14 +1,14 @@
 create or alter proc dbo.CookbookRecipeUpdate(
-	@CookbookRecipeId int output,
-	@CookbookId int,
-	@RecipeId int,
-	@SequenceVal int,
+	@CookbookRecipeId int = 0 output,
+	@CookbookId int = 0,
+	@RecipeId int = 0,
+	@SequenceVal int = 0,
 	@Message varchar(500) = '' output
 )
 as
 begin
 	declare @return int = 0
-	select @CookbookId = isnull(@CookbookId,0), @CookbookRecipeId = isnull(@CookbookRecipeId,0), @RecipeId = isnull(@RecipeId,0), @SequenceVal = isnull(@SequenceVal,1)
+	select @CookbookId = isnull(@CookbookId,0), @CookbookRecipeId = isnull(@CookbookRecipeId,0), @RecipeId = isnull(@RecipeId,0), @SequenceVal = isnull(@SequenceVal,0)
 
 	if @CookbookRecipeId = 0
 	begin

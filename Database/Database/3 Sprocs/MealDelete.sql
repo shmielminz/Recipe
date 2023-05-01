@@ -1,10 +1,12 @@
 create or alter proc dbo.MealDelete(
-	@MealId int,
+	@MealId int = 0,
 	@Message varchar(500) = '' output
 )
 as
 begin
 	declare @return int = 0
+
+	select @MealId = ISNULL(@MealId,0)
 
 	begin try
 		begin tran

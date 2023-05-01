@@ -1,14 +1,14 @@
 create or alter proc dbo.MealCourseUpdate(
-	@MealCourseId int output,
-	@CourseId int,
-	@MealId int,
+	@MealCourseId int = 0 output,
+	@CourseId int = 0,
+	@MealId int = 0,
 	@Message varchar(500) = '' output
 )
 as
 begin
 	declare @return int = 0
 
-	select @MealCourseId = ISNULL(@MealCourseId,0)
+	select @MealCourseId = ISNULL(@MealCourseId,0), @CourseId = ISNULL(@CourseId,0), @MealId = ISNULL(@MealId,0)
 
 	if @MealCourseId = 0
 	begin
