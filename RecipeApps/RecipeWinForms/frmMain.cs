@@ -58,6 +58,17 @@
                     frmCloneRecipe f = new();
                     newfrm = f;
                 }
+                else if (frmtype == typeof(frmCookbook))
+                {
+                    frmCookbook f = new();
+                    newfrm = f;
+                    f.LoadForm(pkvalue);
+                }
+                else if (frmtype == typeof(frmCookbookList))
+                {
+                    frmCookbookList f = new();
+                    newfrm = f;
+                }
 
                 if (newfrm != null)
                 {
@@ -113,12 +124,12 @@
 
         private void MnuNewCookbook_Click(object? sender, EventArgs e)
         {
-
+            OpenForm(typeof(frmCookbook));
         }
 
         private void MnuCookbookList_Click(object? sender, EventArgs e)
         {
-            
+            OpenForm(typeof(frmCookbookList));
         }
 
         private void MnuCloneRecipe_Click(object? sender, EventArgs e)

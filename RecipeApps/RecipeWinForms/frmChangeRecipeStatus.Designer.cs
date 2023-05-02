@@ -148,7 +148,7 @@
             this.txtDateArchived.Location = new System.Drawing.Point(648, 68);
             this.txtDateArchived.Name = "txtDateArchived";
             this.txtDateArchived.Size = new System.Drawing.Size(216, 50);
-            this.txtDateArchived.TabIndex = 7;
+            this.txtDateArchived.TabIndex = 6;
             // 
             // txtDatePublished
             // 
@@ -158,7 +158,7 @@
             this.txtDatePublished.Location = new System.Drawing.Point(426, 68);
             this.txtDatePublished.Name = "txtDatePublished";
             this.txtDatePublished.Size = new System.Drawing.Size(216, 50);
-            this.txtDatePublished.TabIndex = 6;
+            this.txtDatePublished.TabIndex = 4;
             // 
             // txtDateDrafted
             // 
@@ -168,7 +168,7 @@
             this.txtDateDrafted.Location = new System.Drawing.Point(204, 68);
             this.txtDateDrafted.Name = "txtDateDrafted";
             this.txtDateDrafted.Size = new System.Drawing.Size(216, 50);
-            this.txtDateDrafted.TabIndex = 5;
+            this.txtDateDrafted.TabIndex = 2;
             // 
             // lblDateArchived
             // 
@@ -178,7 +178,7 @@
             this.lblDateArchived.Location = new System.Drawing.Point(648, 0);
             this.lblDateArchived.Name = "lblDateArchived";
             this.lblDateArchived.Size = new System.Drawing.Size(216, 65);
-            this.lblDateArchived.TabIndex = 3;
+            this.lblDateArchived.TabIndex = 5;
             this.lblDateArchived.Text = "Date Archived";
             this.lblDateArchived.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -190,7 +190,7 @@
             this.lblDatePublished.Location = new System.Drawing.Point(426, 0);
             this.lblDatePublished.Name = "lblDatePublished";
             this.lblDatePublished.Size = new System.Drawing.Size(216, 65);
-            this.lblDatePublished.TabIndex = 2;
+            this.lblDatePublished.TabIndex = 3;
             this.lblDatePublished.Text = "Date Published";
             this.lblDatePublished.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 

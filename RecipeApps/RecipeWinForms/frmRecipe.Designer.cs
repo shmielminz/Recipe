@@ -124,7 +124,7 @@
             this.tblButtons.RowCount = 1;
             this.tblButtons.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblButtons.Size = new System.Drawing.Size(783, 48);
-            this.tblButtons.TabIndex = 0;
+            this.tblButtons.TabIndex = 10;
             // 
             // btnSave
             // 
@@ -177,7 +177,7 @@
             this.tbChildRecords.Name = "tbChildRecords";
             this.tbChildRecords.SelectedIndex = 0;
             this.tbChildRecords.Size = new System.Drawing.Size(783, 300);
-            this.tbChildRecords.TabIndex = 1;
+            this.tbChildRecords.TabIndex = 11;
             // 
             // tbIngredients
             // 
@@ -212,7 +212,7 @@
             this.btnSaveIngredients.Location = new System.Drawing.Point(3, 3);
             this.btnSaveIngredients.Name = "btnSaveIngredients";
             this.btnSaveIngredients.Size = new System.Drawing.Size(112, 42);
-            this.btnSaveIngredients.TabIndex = 0;
+            this.btnSaveIngredients.TabIndex = 1;
             this.btnSaveIngredients.Text = "Save";
             this.btnSaveIngredients.UseVisualStyleBackColor = true;
             // 
@@ -227,15 +227,15 @@
             this.gIngredients.RowHeadersWidth = 62;
             this.gIngredients.RowTemplate.Height = 33;
             this.gIngredients.Size = new System.Drawing.Size(763, 195);
-            this.gIngredients.TabIndex = 1;
+            this.gIngredients.TabIndex = 0;
             // 
             // tbSteps
             // 
             this.tbSteps.Controls.Add(this.tblSteps);
-            this.tbSteps.Location = new System.Drawing.Point(4, 34);
+            this.tbSteps.Location = new System.Drawing.Point(4, 41);
             this.tbSteps.Name = "tbSteps";
             this.tbSteps.Padding = new System.Windows.Forms.Padding(3);
-            this.tbSteps.Size = new System.Drawing.Size(775, 339);
+            this.tbSteps.Size = new System.Drawing.Size(775, 255);
             this.tbSteps.TabIndex = 1;
             this.tbSteps.Text = "Steps";
             this.tbSteps.UseVisualStyleBackColor = true;
@@ -252,7 +252,7 @@
             this.tblSteps.RowCount = 2;
             this.tblSteps.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tblSteps.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblSteps.Size = new System.Drawing.Size(769, 333);
+            this.tblSteps.Size = new System.Drawing.Size(769, 249);
             this.tblSteps.TabIndex = 0;
             // 
             // gSteps
@@ -263,8 +263,8 @@
             this.gSteps.Name = "gSteps";
             this.gSteps.RowHeadersWidth = 62;
             this.gSteps.RowTemplate.Height = 33;
-            this.gSteps.Size = new System.Drawing.Size(763, 279);
-            this.gSteps.TabIndex = 2;
+            this.gSteps.Size = new System.Drawing.Size(763, 195);
+            this.gSteps.TabIndex = 0;
             // 
             // btnSaveSteps
             // 
@@ -272,7 +272,7 @@
             this.btnSaveSteps.Location = new System.Drawing.Point(3, 3);
             this.btnSaveSteps.Name = "btnSaveSteps";
             this.btnSaveSteps.Size = new System.Drawing.Size(112, 42);
-            this.btnSaveSteps.TabIndex = 0;
+            this.btnSaveSteps.TabIndex = 1;
             this.btnSaveSteps.Text = "Save";
             this.btnSaveSteps.UseVisualStyleBackColor = true;
             // 
@@ -296,7 +296,7 @@
             this.lblCuisineType.Margin = new System.Windows.Forms.Padding(20, 0, 3, 0);
             this.lblCuisineType.Name = "lblCuisineType";
             this.lblCuisineType.Size = new System.Drawing.Size(92, 32);
-            this.lblCuisineType.TabIndex = 3;
+            this.lblCuisineType.TabIndex = 4;
             this.lblCuisineType.Text = "Cuisine";
             this.lblCuisineType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -308,7 +308,7 @@
             this.lblCalories.Margin = new System.Windows.Forms.Padding(20, 0, 3, 0);
             this.lblCalories.Name = "lblCalories";
             this.lblCalories.Size = new System.Drawing.Size(158, 32);
-            this.lblCalories.TabIndex = 4;
+            this.lblCalories.TabIndex = 6;
             this.lblCalories.Text = "Num Calories";
             this.lblCalories.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -332,7 +332,7 @@
             this.lblStatusDates.Margin = new System.Windows.Forms.Padding(20, 0, 3, 0);
             this.lblStatusDates.Name = "lblStatusDates";
             this.lblStatusDates.Size = new System.Drawing.Size(145, 32);
-            this.lblStatusDates.TabIndex = 6;
+            this.lblStatusDates.TabIndex = 8;
             this.lblStatusDates.Text = "Status Dates";
             this.lblStatusDates.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -358,7 +358,7 @@
             this.tblStatusDates.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblStatusDates.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblStatusDates.Size = new System.Drawing.Size(578, 106);
-            this.tblStatusDates.TabIndex = 7;
+            this.tblStatusDates.TabIndex = 9;
             // 
             // txtDateArchived
             // 
@@ -381,7 +381,7 @@
             this.txtDatePublished.Location = new System.Drawing.Point(195, 60);
             this.txtDatePublished.Name = "txtDatePublished";
             this.txtDatePublished.Size = new System.Drawing.Size(186, 39);
-            this.txtDatePublished.TabIndex = 4;
+            this.txtDatePublished.TabIndex = 3;
             this.txtDatePublished.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblDateArchived
@@ -391,7 +391,7 @@
             this.lblDateArchived.Location = new System.Drawing.Point(387, 10);
             this.lblDateArchived.Name = "lblDateArchived";
             this.lblDateArchived.Size = new System.Drawing.Size(188, 32);
-            this.lblDateArchived.TabIndex = 2;
+            this.lblDateArchived.TabIndex = 4;
             this.lblDateArchived.Text = "Archived";
             this.lblDateArchived.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -402,7 +402,7 @@
             this.lblDatePublished.Location = new System.Drawing.Point(195, 10);
             this.lblDatePublished.Name = "lblDatePublished";
             this.lblDatePublished.Size = new System.Drawing.Size(186, 32);
-            this.lblDatePublished.TabIndex = 1;
+            this.lblDatePublished.TabIndex = 2;
             this.lblDatePublished.Text = "Published";
             this.lblDatePublished.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -426,7 +426,7 @@
             this.txtDateDrafted.Location = new System.Drawing.Point(3, 60);
             this.txtDateDrafted.Name = "txtDateDrafted";
             this.txtDateDrafted.Size = new System.Drawing.Size(186, 39);
-            this.txtDateDrafted.TabIndex = 3;
+            this.txtDateDrafted.TabIndex = 1;
             this.txtDateDrafted.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtRecipeStatus
@@ -448,7 +448,7 @@
             this.txtCalories.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtCalories.Name = "txtCalories";
             this.txtCalories.Size = new System.Drawing.Size(578, 39);
-            this.txtCalories.TabIndex = 9;
+            this.txtCalories.TabIndex = 7;
             // 
             // txtRecipeName
             // 
@@ -457,7 +457,7 @@
             this.txtRecipeName.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.txtRecipeName.Name = "txtRecipeName";
             this.txtRecipeName.Size = new System.Drawing.Size(578, 39);
-            this.txtRecipeName.TabIndex = 10;
+            this.txtRecipeName.TabIndex = 3;
             // 
             // lstCuisineType
             // 
@@ -467,7 +467,7 @@
             this.lstCuisineType.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.lstCuisineType.Name = "lstCuisineType";
             this.lstCuisineType.Size = new System.Drawing.Size(578, 40);
-            this.lstCuisineType.TabIndex = 11;
+            this.lstCuisineType.TabIndex = 5;
             // 
             // lblUsername
             // 
@@ -477,7 +477,7 @@
             this.lblUsername.Margin = new System.Windows.Forms.Padding(20, 0, 3, 0);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(121, 32);
-            this.lblUsername.TabIndex = 12;
+            this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "Username";
             // 
             // lstUsername
@@ -488,7 +488,7 @@
             this.lstUsername.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.lstUsername.Name = "lstUsername";
             this.lstUsername.Size = new System.Drawing.Size(578, 40);
-            this.lstUsername.TabIndex = 13;
+            this.lstUsername.TabIndex = 1;
             // 
             // frmRecipe
             // 

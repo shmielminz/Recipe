@@ -32,6 +32,7 @@
             {
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), newid);
             }
+            this.Close();
         }
     }
 }
