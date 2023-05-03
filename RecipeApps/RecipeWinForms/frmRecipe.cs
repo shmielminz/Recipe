@@ -24,7 +24,10 @@ namespace RecipeWinForms
 
         private void FrmRecipe_Activated(object? sender, EventArgs e)
         {
-            bindsource.DataSource = Recipe.Load(recipeid);
+            if (recipeid > 0)
+            {
+                bindsource.DataSource = Recipe.Load(recipeid);
+            }
         }
 
         public void LoadForm(int recipeidval)
@@ -113,7 +116,7 @@ namespace RecipeWinForms
 
         private void Delete()
         {
-            var response = MessageBox.Show("Are you sure you want to delete this Recipe?", Application.ProductName, MessageBoxButtons.YesNo);
+            var response = MessageBox.Show($"Are you sure you want to delete this '{this.Text}' with all related records?", Application.ProductName, MessageBoxButtons.YesNo);
             if (response == DialogResult.No)
             {
                 return;
@@ -249,6 +252,7 @@ namespace RecipeWinForms
             {
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeRecipeStatus),recipeid);
             }
+            bindsource.DataSource = Recipe.Load(recipeid);
         }
 
         private void FrmRecipe_FormClosing(object? sender, FormClosingEventArgs e)
@@ -256,7 +260,7 @@ namespace RecipeWinForms
             bindsource.EndEdit();
             if (SQLUtility.TableHasChanges(dtrecipe))
             {
-                var res = MessageBox.Show($"Do you want to save changes to {this.Text} before closing?", Application.ProductName, MessageBoxButtons.YesNoCancel);
+                var res = MessageBox.Show($"Do you want to save changes to '{this.Text}' before closing?", Application.ProductName, MessageBoxButtons.YesNoCancel);
                 switch (res)
                 {
                     case DialogResult.Yes:
