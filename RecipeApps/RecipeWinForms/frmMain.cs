@@ -69,6 +69,21 @@
                     frmCookbookList f = new();
                     newfrm = f;
                 }
+                else if (frmtype == typeof(frmCookbookAutoCreate))
+                {
+                    frmCookbookAutoCreate f = new();
+                    newfrm = f;
+                }
+                else if (frmtype == typeof(frmDataMaintenance))
+                {
+                    frmDataMaintenance f = new();
+                    newfrm = f;
+                }
+                else if (frmtype == typeof(frmMealList))
+                {
+                    frmMealList f = new();
+                    newfrm = f;
+                }
 
                 if (newfrm != null)
                 {
@@ -104,7 +119,7 @@
 
         private void MnuDataMaintEdit_Click(object? sender, EventArgs e)
         {
-            
+            OpenForm(typeof(frmDataMaintenance));
         }
 
         private void MnuDashboard_Click(object? sender, EventArgs e)
@@ -114,12 +129,12 @@
 
         private void MnuMealList_Click(object? sender, EventArgs e)
         {
-
+            OpenForm(typeof(frmMealList));
         }
 
         private void MnuCookbookAutoCreate_Click(object? sender, EventArgs e)
         {
-
+            OpenForm(typeof(frmCookbookAutoCreate));
         }
 
         private void MnuNewCookbook_Click(object? sender, EventArgs e)

@@ -35,12 +35,18 @@
 
         private void BtnCookbook_Click(object? sender, EventArgs e)
         {
-
+            if (this.MdiParent != null && this.MdiParent is frmMain)
+            {
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmCookbookList));
+            }
         }
 
         private void BtnMeal_Click(object? sender, EventArgs e)
         {
-
+            if (this.MdiParent != null && this.MdiParent is frmMain)
+            {
+                ((frmMain)this.MdiParent).OpenForm(typeof(frmMealList));
+            }
         }
 
         private void BtnRecipe_Click(object? sender, EventArgs e)

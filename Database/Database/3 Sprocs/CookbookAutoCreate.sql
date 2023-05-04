@@ -1,6 +1,6 @@
 create or alter proc dbo.CookbookAutoCreate(
 	@StaffId int = 0,
-	@CookbookId int output,
+	@CookbookId int = 0 output,
 	@Message varchar(500) = '' output
 )
 as

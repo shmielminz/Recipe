@@ -97,7 +97,9 @@ go
 
 create table dbo.Course(
     CourseId int not null identity primary key,
-    SequenceVal int not null constraint ck_Course_sequence_must_be_greater_than_0 check(SequenceVal > 0),
+    SequenceVal int not null 
+		constraint ck_Course_sequence_must_be_greater_than_0 check(SequenceVal > 0)
+		constraint u_Course_SequenceVal unique,
     CourseName varchar(20) not null
         constraint ck_Course_name_cannot_be_blank check(CourseName > '')
         constraint u_Course_CourseName unique

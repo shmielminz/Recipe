@@ -19,15 +19,6 @@ namespace RecipeWinForms
             gIngredients.CellContentClick += GIngredients_CellContentClick;
             gSteps.CellContentClick += GSteps_CellContentClick;
             btnChangeStatus.Click += BtnChangeStatus_Click;
-            this.Activated += FrmRecipe_Activated;
-        }
-
-        private void FrmRecipe_Activated(object? sender, EventArgs e)
-        {
-            if (recipeid > 0)
-            {
-                bindsource.DataSource = Recipe.Load(recipeid);
-            }
         }
 
         public void LoadForm(int recipeidval)

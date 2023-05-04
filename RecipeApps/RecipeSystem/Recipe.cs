@@ -27,11 +27,14 @@
             return dt;
         }
 
-        public static DataTable GetStaffList()
+        public static DataTable GetStaffList(bool includeblank = false)
         {
             DataTable dt;
             SqlCommand cmd = SQLUtility.GetSqlCommand("StaffGet");
             SQLUtility.SetParamValue(cmd, "@All", 1);
+            if (includeblank) {
+                SQLUtility.SetParamValue(cmd, "@IncludeBlank", 1);
+            }
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
@@ -55,10 +58,9 @@
             return dt;
         }
 
-        public static DataRow CloneRecipe(DataRow row)
+        public static void CloneRecipe(DataRow row)
         {
             SQLUtility.SaveDataRow(row, "CloneRecipe");
-            return row;
         }
 
         public static void Save(DataTable dtrecipe)

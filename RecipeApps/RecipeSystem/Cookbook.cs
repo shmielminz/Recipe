@@ -11,6 +11,11 @@
             return dt;
         }
 
+        public static void AutoCreate(DataRow row)
+        {
+            SQLUtility.SaveDataRow(row, "CookbookAutoCreate");
+        }
+
         public static DataTable Load(int cookbookid)
         {
             DataTable dt;

@@ -339,12 +339,12 @@ go
 
 ;with x as(
    select SequenceVal = 1, Course = 'Appetizer'
-   union select 2, 'Soup'
-   union select 3, 'Salad'
-   union select 3, 'Fish'
-   union select 4, 'Main'
-   union select 5, 'Dessert'
-   union select 5, 'Coffee'
+   union select 2, 'Fish'
+   union select 3, 'Soup'
+   union select 4, 'Salad'
+   union select 5, 'Main'
+   union select 6, 'Dessert'
+   union select 7, 'Coffee'
 )
 insert Course(SequenceVal,CourseName)
 select x.SequenceVal, x.Course
