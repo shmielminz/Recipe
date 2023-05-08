@@ -33,28 +33,27 @@
             }
         }
 
-        private void BtnCookbook_Click(object? sender, EventArgs e)
+        private void OpenForm(Type frm)
         {
             if (this.MdiParent != null && this.MdiParent is frmMain)
             {
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmCookbookList));
+                ((frmMain)this.MdiParent).OpenForm(frm);
             }
+        }
+
+        private void BtnCookbook_Click(object? sender, EventArgs e)
+        {
+            OpenForm(typeof(frmCookbookList));
         }
 
         private void BtnMeal_Click(object? sender, EventArgs e)
         {
-            if (this.MdiParent != null && this.MdiParent is frmMain)
-            {
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmMealList));
-            }
+            OpenForm(typeof(frmMealList));
         }
 
         private void BtnRecipe_Click(object? sender, EventArgs e)
         {
-            if (this.MdiParent != null && this.MdiParent is frmMain)
-            {
-                ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipeList));
-            }
+            OpenForm(typeof(frmRecipeList));
         }
     }
 }
