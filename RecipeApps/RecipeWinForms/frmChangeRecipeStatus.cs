@@ -36,6 +36,13 @@
             if (this.MdiParent != null && this.MdiParent is frmMain)
             {
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), recipeid);
+                foreach (Form f in Application.OpenForms)
+                {
+                    if (f is frmRecipe)
+                    {
+                        ((frmRecipe)f).bindsource.DataSource = Recipe.Load(recipeid);
+                    }
+                }
             }
             this.Close();
         }

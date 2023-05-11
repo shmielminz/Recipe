@@ -243,7 +243,7 @@ namespace RecipeWinForms
             {
                 ((frmMain)this.MdiParent).OpenForm(typeof(frmChangeRecipeStatus),recipeid);
             }
-            bindsource.DataSource = Recipe.Load(recipeid);
+            //bindsource.DataSource = Recipe.Load(recipeid);
         }
 
         private void FrmRecipe_FormClosing(object? sender, FormClosingEventArgs e)
