@@ -11,6 +11,7 @@
             btnDraft.Click += BtnDraft_Click;
             btnPublish.Click += BtnPublish_Click;
             btnArchive.Click += BtnArchive_Click;
+            this.Activated += FrmChangeRecipeStatus_Activated;
         }
 
         public void LoadForm(int recipeidval)
@@ -76,6 +77,14 @@
                 UpdateRecipeStatus("DateDrafted");
             }
             LoadRecipeForm();
+        }
+
+        private void FrmChangeRecipeStatus_Activated(object? sender, EventArgs e)
+        {
+            if (lblRecipeStatus.Text == "Archived")
+            {
+                btnPublish.Enabled = false;
+            }
         }
     }
 }

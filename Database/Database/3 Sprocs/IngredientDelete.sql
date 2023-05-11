@@ -1,4 +1,4 @@
-create or alter proc dbo.IngerdientDelete(
+create or alter proc dbo.IngredientDelete(
 	@IngredientId int = 0,
 	@Message varchar(500) = '' output
 )
