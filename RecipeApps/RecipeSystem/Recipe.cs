@@ -2,18 +2,11 @@
 {
     public class Recipe
     {
-        public static DataTable SearchRecipe(string recipename)
+        public static DataTable GetAllRecipes()
         {
             DataTable dt;
             SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
-            if (recipename == "")
-            {
-                SQLUtility.SetParamValue(cmd, "@All", 1);
-            }
-            else
-            {
-                SQLUtility.SetParamValue(cmd, "@RecipeName", recipename);
-            }
+            SQLUtility.SetParamValue(cmd, "@All", 1);
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
@@ -65,6 +58,7 @@
 
         public static void Save(DataTable dtrecipe)
         {
+            //SM this should never fail, but if was called without any rows, it shouldnt crash. As was done in video.
             if (dtrecipe.Rows.Count == 0)
             {
                 throw new Exception("Cannot call Recipe Save method, there were no recipes returned from database.");

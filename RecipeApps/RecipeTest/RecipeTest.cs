@@ -257,7 +257,7 @@ namespace RecipeTest
             TestContext.WriteLine(num + " recipes that match '" + criteria + "' criteria");
             TestContext.WriteLine("Ensure that recipes search returns " + num + " rows");
 
-            DataTable dt = Recipe.SearchRecipe(criteria);
+            DataTable dt = Recipe.GetRecipe(criteria);
             int results = dt.Rows.Count;
 
             Assert.IsTrue(results == num, "Results of recipes search does not match number of recipes, " + results + " <> " + num);

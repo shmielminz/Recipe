@@ -34,27 +34,26 @@
 
         public static void UpdateRecipeStatus(DataTable dt, string updatedate)
         {
-            try
+            if (dt.Rows.Count == 0)
             {
-                if (updatedate == "DateDrafted")
-                {
-                    //Doing -10 milliseconds because looks like the SQLServer getdate() might be off with a millisecond or two, so it throws error.
-                    dt.Rows[0]["DateDrafted"] = DateTime.Now.AddMilliseconds(-10);
-                    dt.Rows[0]["DatePublished"] = DBNull.Value;
-                    dt.Rows[0]["DateArchived"] = DBNull.Value;
-                }
-                else if (updatedate == "DatePublished")
-                {
-                    dt.Rows[0]["DatePublished"] = DateTime.Now.AddMilliseconds(-10);
-                }
-                else if (updatedate == "DateArchived")
-                {
-                    dt.Rows[0]["DateArchived"] = DateTime.Now.AddMilliseconds(-10);
-                }
-            }
-            catch
-            {
+                //SM This would throw exception if loaded with wrong table. See my comment in Cookbook class.
                 throw new Exception("Cannot update date fields, wrong table was sent to system.");
+            }
+
+            if (updatedate == "DateDrafted")
+            {
+                //Doing -10 milliseconds because looks like the SQLServer getdate() might be off with a millisecond or two, so it throws error.
+                dt.Rows[0]["DateDrafted"] = DateTime.Now.AddMilliseconds(-10);
+                dt.Rows[0]["DatePublished"] = DBNull.Value;
+                dt.Rows[0]["DateArchived"] = DBNull.Value;
+            }
+            else if (updatedate == "DatePublished")
+            {
+                dt.Rows[0]["DatePublished"] = DateTime.Now.AddMilliseconds(-10);
+            }
+            else if (updatedate == "DateArchived")
+            {
+                dt.Rows[0]["DateArchived"] = DateTime.Now.AddMilliseconds(-10);
             }
             Recipe.Save(dt);
         }

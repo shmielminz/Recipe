@@ -49,13 +49,18 @@
 
         private void UpdateRecipeStatus(string updatedate)
         {
-            try
+            var res = MessageBox.Show($"Are you sure you want to chnge status of {lblRecipeName.Text} to {updatedate.Substring(4)}?", Application.ProductName, MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes)
             {
-                DataMaintenance.UpdateRecipeStatus(dtrecipe, updatedate);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName);
+                try
+                {
+                    DataMaintenance.UpdateRecipeStatus(dtrecipe, updatedate);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, Application.ProductName);
+                }
+                LoadRecipeForm();
             }
         }
 
@@ -65,7 +70,6 @@
             {
                 UpdateRecipeStatus("DateArchived");
             }
-            LoadRecipeForm();
         }
 
         private void BtnPublish_Click(object? sender, EventArgs e)
@@ -74,7 +78,6 @@
             {
                 UpdateRecipeStatus("DatePublished");
             }
-            LoadRecipeForm();
         }
 
         private void BtnDraft_Click(object? sender, EventArgs e)
@@ -83,14 +86,24 @@
             {
                 UpdateRecipeStatus("DateDrafted");
             }
-            LoadRecipeForm();
         }
 
         private void FrmChangeRecipeStatus_Activated(object? sender, EventArgs e)
         {
-            if (lblRecipeStatus.Text == "Archived")
+            switch (lblRecipeStatus.Text)
             {
-                btnPublish.Enabled = false;
+                case "Drafted":
+                    btnDraft.Enabled = false;
+                    break;
+                case "Archived":
+                    btnArchive.Enabled = false;
+                    btnPublish.Enabled = false;
+                    break;
+                case "Published":
+                    btnPublish.Enabled = false;
+                    break;
+                default:
+                    break;
             }
         }
     }
