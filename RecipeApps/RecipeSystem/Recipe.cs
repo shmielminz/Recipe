@@ -2,6 +2,9 @@
 {
     public class Recipe
     {
+        /*AF I don't see any search functionality in your application.  If that is the case, I would remove the paramater to pass in recipename,
+         as you are never actually passing in a recipe name.  Then you can take out the 'else' statement.  And it would be good to rename the procedure
+        to what it's doing - it's just getting a list of all recipes, not searching */
         public static DataTable GetAllRecipes()
         {
             DataTable dt;
@@ -25,7 +28,8 @@
             DataTable dt;
             SqlCommand cmd = SQLUtility.GetSqlCommand("StaffGet");
             SQLUtility.SetParamValue(cmd, "@All", 1);
-            if (includeblank) {
+            if (includeblank)
+            {
                 SQLUtility.SetParamValue(cmd, "@IncludeBlank", 1);
             }
             dt = SQLUtility.GetDataTable(cmd);
@@ -63,7 +67,7 @@
             {
                 throw new Exception("Cannot call Recipe Save method, there were no recipes returned from database.");
             }
-            
+
             DataRow r = dtrecipe.Rows[0];
 
             SQLUtility.SaveDataRow(r, "RecipeUpdate");

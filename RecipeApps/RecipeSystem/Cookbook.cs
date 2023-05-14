@@ -2,6 +2,7 @@
 {
     public class Cookbook
     {
+        //AF I'd rename this - it seems to be getting all cookbooks, not searching
         public static DataTable GetAllCookbooks()
         {
             DataTable dt;
@@ -28,6 +29,7 @@
         public static void Save(DataTable dtcookbook)
         {
             if (dtcookbook.Rows.Count == 0)
+            //AF When would this error happen?
             {
                 //SM this should never fail, but if was called without any rows, it shouldnt crash. As was done in video.
                 throw new Exception("Cannot call Cookbook Save method, there were no cookbooks returned from database.");
