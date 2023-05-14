@@ -54,6 +54,7 @@
             }
             catch
             {
+                //AF What does this error mean and when can this happen?
                 throw new Exception("Cannot update date fields, wrong table was sent to system.");
             }
             Recipe.Save(dt);
