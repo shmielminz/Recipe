@@ -2,7 +2,7 @@
 {
     public class Cookbook
     {
-        public static DataTable SearchCookbook()
+        public static DataTable GetAllCookbooks()
         {
             DataTable dt;
             SqlCommand cmd = SQLUtility.GetSqlCommand("CookbookGet");

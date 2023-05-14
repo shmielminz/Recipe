@@ -13,7 +13,7 @@
 
         private void LoadData()
         {
-            DataTable dt = Cookbook.SearchCookbook();
+            DataTable dt = Cookbook.GetAllCookbooks();
             gCookbooks.DataSource = dt;
             gCookbooks.Columns["CookbookId"].Visible = false;
             gCookbooks.Columns["StaffId"].Visible = false;
