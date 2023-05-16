@@ -36,8 +36,6 @@
         {
             if (dt.Rows.Count == 0)
             {
-                //AF What does this error mean and when can this happen?
-                //SM This would throw exception if loaded with wrong table. See my comment in Cookbook class.      
                 throw new Exception("Cannot update date fields, wrong table was sent to system.");
             }
 
