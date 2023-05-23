@@ -2,9 +2,6 @@
 {
     public class Recipe
     {
-        /*AF I don't see any search functionality in your application.  If that is the case, I would remove the paramater to pass in recipename,
-         as you are never actually passing in a recipe name.  Then you can take out the 'else' statement.  And it would be good to rename the procedure
-        to what it's doing - it's just getting a list of all recipes, not searching */
         public static DataTable GetAllRecipes()
         {
             DataTable dt;
