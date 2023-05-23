@@ -15,6 +15,7 @@ begin
 	return @value
 end
 go
-
+/*
 select m.MealName, TotalCalories = dbo.MealCalories(m.MealId)
 from Meal m
+*/
