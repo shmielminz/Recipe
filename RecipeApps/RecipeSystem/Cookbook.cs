@@ -29,7 +29,6 @@
         {
             if (dtcookbook.Rows.Count == 0)
             {
-                //SM this should never fail, but if was called without any rows, it shouldnt crash. As was done in video.
                 throw new Exception("Cannot call Cookbook Save method, there were no cookbooks returned from database.");
             }
 
