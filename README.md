@@ -13,7 +13,7 @@ We also store all our meals and cookbooks. And guess what, we also allow you to 
 The website is still in developement. When we will publish it, we will add more info here.
 
 ### Windows Apps
-We have a Windows Forms app where you can search and update all our recipes. We will have more info on this in the coming months.
+We have a Windows Forms app where you can search and update all our recipes. We're now in proccess of creating a more modern app done in MAUI. We will have more info on this in the coming months.
 
 ### Mobile Apps
 The mobile app is still in developement. When we will publish it, we will add more info here.
