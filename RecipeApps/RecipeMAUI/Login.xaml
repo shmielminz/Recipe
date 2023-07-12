@@ -18,7 +18,7 @@
                 <Label Grid.Row="0" Grid.Column="0" Text="User Name"/>
                 <Entry x:Name="UserNameTxt" Grid.Row="0" Grid.Column="1" Text="appadmin"/>
                 <Label Grid.Row="1" Grid.Column="0" Text="Password"/>
-                <Entry x:Name="PasswordTxt" Grid.Row="1" Grid.Column="1" IsPassword="True" Text="abcABC123$%^"/>
+                <Entry x:Name="PasswordTxt" Grid.Row="1" Grid.Column="1" IsPassword="True" Text=""/>
                 <Button x:Name="LoginBtn" Text="Login" Grid.Row="2" Grid.Column="0" Clicked="LoginBtn_Clicked"/>
                 <Button x:Name="CancelBtn" Text="Cancel" Grid.Row="2" Grid.Column="1" Clicked="CancelBtn_Clicked"/>
             </Grid>
