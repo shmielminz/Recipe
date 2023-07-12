@@ -12,8 +12,11 @@ namespace RecipeWinForms
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            DbManager.SetConnectionString("Server=.\\MSSQLSERVER01;Database=RecipeDB;Trusted_Connection=True;");
-            Application.Run(new frmMain());
+            frmMain f = new();
+#if DEBUG
+            f.Text += " - DEV";
+#endif
+            Application.Run(f);
         }
     }
 }
