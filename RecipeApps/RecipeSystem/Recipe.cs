@@ -25,7 +25,8 @@
             DataTable dt;
             SqlCommand cmd = SQLUtility.GetSqlCommand("StaffGet");
             SQLUtility.SetParamValue(cmd, "@All", 1);
-            if (includeblank) {
+            if (includeblank)
+            {
                 SQLUtility.SetParamValue(cmd, "@IncludeBlank", 1);
             }
             dt = SQLUtility.GetDataTable(cmd);
@@ -63,7 +64,7 @@
             {
                 throw new Exception("Cannot call Recipe Save method, there were no recipes returned from database.");
             }
-            
+
             DataRow r = dtrecipe.Rows[0];
 
             SQLUtility.SaveDataRow(r, "RecipeUpdate");

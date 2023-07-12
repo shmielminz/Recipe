@@ -18,6 +18,7 @@ begin
 	return @value
 end
 go
-
+/*
 select r.RecipeName, RecipeDesc = dbo.RecipeDesc(r.RecipeId)
 from Recipe r
+*/
