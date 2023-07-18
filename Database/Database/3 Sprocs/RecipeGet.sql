@@ -16,7 +16,8 @@ begin
 		r.RecipeStatus,  
 		s.Username,
 		r.Calories, 
-		NumIngredient = count(ri.RecipeIngredientId)
+		NumIngredient = count(ri.RecipeIngredientId),
+		r.ImageName
 	from Recipe r
 	join Staff s
 	on s.StaffId = r.StaffId
@@ -25,7 +26,7 @@ begin
 	where r.RecipeId = @RecipeId
 	or @All = 1
 	or (@RecipeName <> '' and r.RecipeName like '%' + @RecipeName + '%')
-	group by r.RecipeId, r.RecipeName, r.RecipeStatus, s.Username, r.Calories
+	group by r.RecipeId, r.RecipeName, r.RecipeStatus, s.Username, r.Calories, r.ImageName
 	order by r.RecipeStatus desc, r.RecipeName
 
 	return @return
