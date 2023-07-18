@@ -11,14 +11,14 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Label Text="Login" FontSize="Header"/>
-        <Label x:Name="MessageLbl" FontSize="Medium" TextColor="Red"/>
+        <Label Text="Login" FontSize="Header" HorizontalOptions="Center"/>
+        <Label x:Name="MessageLbl" FontSize="Medium" TextColor="Red" HorizontalOptions="Center"/>
         <Border Padding="10">
             <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="10">
                 <Label Grid.Row="0" Grid.Column="0" Text="User Name"/>
-                <Entry x:Name="UserNameTxt" Grid.Row="0" Grid.Column="1" Text="appadmin"/>
+                <Entry x:Name="UserNameTxt" Grid.Row="0" Grid.Column="1"/>
                 <Label Grid.Row="1" Grid.Column="0" Text="Password"/>
-                <Entry x:Name="PasswordTxt" Grid.Row="1" Grid.Column="1" IsPassword="True" Text=""/>
+                <Entry x:Name="PasswordTxt" Grid.Row="1" Grid.Column="1" IsPassword="True"/>
                 <Button x:Name="LoginBtn" Text="Login" Grid.Row="2" Grid.Column="0" Clicked="LoginBtn_Clicked"/>
                 <Button x:Name="CancelBtn" Text="Cancel" Grid.Row="2" Grid.Column="1" Clicked="CancelBtn_Clicked"/>
             </Grid>
