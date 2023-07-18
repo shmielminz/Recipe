@@ -49,7 +49,7 @@ create table dbo.Ingredient(
     Ingredient varchar(25) not null
         constraint ck_Ingredient_ingredient_cannot_be_blank check(Ingredient > '')
         constraint u_Ingredient_Ingredient unique,
-    ImageName as concat('Ingredient-', replace(Ingredient,' ','-'), '.jpg') persisted
+    ImageName as concat('Ingredient_', replace(Ingredient,' ','_'), '.jpg') persisted
 )
 go
 
@@ -65,7 +65,7 @@ create table dbo.Recipe(
         constraint ck_Recipe_date_drafted_must_be_between_31_12_2021_and_today check(DateDrafted between '2021-12-31' and getdate()),
     DatePublished datetime,
     DateArchived datetime,
-    ImageName as concat('Recipe-',replace(RecipeName,' ','-'),'.jpg') persisted,
+    ImageName as concat('Recipe_',replace(RecipeName,' ','_'),'.jpg') persisted,
     RecipeStatus as case when DateArchived is not null then 'Archived' else case when DatePublished is not null then 'Published' else 'Drafted' end end,
     constraint ck_DatePublished_must_be_between_DateDrafted_and_today check(DatePublished between DateDrafted and getdate()),
     constraint ck_DateArchived_must_be_between_DateDrafted_and_today_and_after_DatePublished 
@@ -114,7 +114,7 @@ create table dbo.Meal(
         constraint u_Meal_MealName unique,
     Active bit not null default 1,
     DateCreated date not null default getdate() constraint ck_Meal_DateCreated_must_be_between_31_12_2021_and_today check(DateCreated between '2021-12-31' and getdate()),
-    ImageName as concat('Meal-',replace(MealName,' ','-'),'.jpg') persisted
+    ImageName as concat('Meal_',replace(MealName,' ','_'),'.jpg') persisted
 )
 go
 
@@ -144,7 +144,7 @@ create table dbo.Cookbook(
     Price decimal(5,2) not null constraint ck_Cookbook_price_must_be_greater_than_0 check(Price > 0),
     Active bit not null default 1,
     DateCreated date not null default getdate() constraint ck_Cookbook_DateCreated_must_be_between_31_12_2021_and_today check(DateCreated between '2021-12-31' and getdate()),
-    ImageName as concat('Cookbook-',replace(CookbookName,' ','-'),'.jpg') persisted
+    ImageName as concat('Cookbook_',replace(CookbookName,' ','_'),'.jpg') persisted
 )
 go
 

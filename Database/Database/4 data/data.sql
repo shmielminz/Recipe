@@ -34,7 +34,7 @@ go
    union select 'Apple Yogurt Smoothie', 'French'
    union select 'Cheese Bread', 'English'
    union select 'Butter Muffins', 'American'
-   union select '360-Minute Steak', 'American'
+   union select '360_Minute Steak', 'American'
    union select 'Roasted Vegetable Yapchik', 'English'
    union select 'Yemenite Chicken Soup', 'Middle East'
    union select 'Eggplant Casserole Dip', 'French'
@@ -49,7 +49,7 @@ go
    union select 'mike@heartyhearth.com', 'Apple Yogurt Smoothie', 'French', 60, dateadd(day,-45,getdate()), null, dateadd(day,-45,getdate())
    union select 'mike@heartyhearth.com', 'Cheese Bread', 'English', 71, dateadd(month,-2,getdate()), getdate(), null
    union select 'robert@heartyhearth.com', 'Butter Muffins', 'American', 170, dateadd(day,-50,getdate()), dateadd(day,-45,getdate()), getdate()
-   union select 'johnroberts@heartyhearth.com', '360-Minute Steak', 'American', 210, dateadd(day,-50,getdate()), null, dateadd(day,-45,getdate())
+   union select 'johnroberts@heartyhearth.com', '360_Minute Steak', 'American', 210, dateadd(day,-50,getdate()), null, dateadd(day,-45,getdate())
    union select 'mike@heartyhearth.com', 'Roasted Vegetable Yapchik', 'English', 60, dateadd(day,-50,getdate()), null, null
    union select 'johnroberts@heartyhearth.com', 'Yemenite Chicken Soup', 'Middle East', 150, dateadd(day,-25,getdate()), getdate(), null
    union select 'johnsmith@heartyhearth.com', 'Eggplant Casserole Dip', 'French', 75, dateadd(month,-2,getdate()), dateadd(day,-35,getdate()), null
@@ -235,15 +235,15 @@ go
    union select 'Butter Muffins', 'American', 8, 'oz', 'sour cream cheese',6, ''
    union select 'Butter Muffins', 'American', 1, 'cup', 'flour',7, ''
    union select 'Butter Muffins', 'American', 2, 'tsp', 'baking powder',8, ''
-   union select '360-Minute Steak', 'American', 3, 'pound', 'minute steak',1, ''
-   union select '360-Minute Steak', 'American', 2.5, 'pound', 'Yukon gold potatoes',2, ''
-   union select '360-Minute Steak', 'American', 2, null,'onions',3, 'Diced'
-   union select '360-Minute Steak', 'American', 14, 'clove', 'garlic',4, ''
-   union select '360-Minute Steak', 'American', 3, 'tbsp', 'oil',5, ''
-   union select '360-Minute Steak', 'American', 1.5, 'tsp', 'salt',6 , ''
-   union select '360-Minute Steak', 'American', 2, 'tsp','Garlic Powder',7, ''
-   union select '360-Minute Steak', 'American', 2, 'tsp', 'Paprika',8, ''
-   union select '360-Minute Steak', 'American', 0.75, 'tsp','pepper',9, ''
+   union select '360_Minute Steak', 'American', 3, 'pound', 'minute steak',1, ''
+   union select '360_Minute Steak', 'American', 2.5, 'pound', 'Yukon gold potatoes',2, ''
+   union select '360_Minute Steak', 'American', 2, null,'onions',3, 'Diced'
+   union select '360_Minute Steak', 'American', 14, 'clove', 'garlic',4, ''
+   union select '360_Minute Steak', 'American', 3, 'tbsp', 'oil',5, ''
+   union select '360_Minute Steak', 'American', 1.5, 'tsp', 'salt',6 , ''
+   union select '360_Minute Steak', 'American', 2, 'tsp','Garlic Powder',7, ''
+   union select '360_Minute Steak', 'American', 2, 'tsp', 'Paprika',8, ''
+   union select '360_Minute Steak', 'American', 0.75, 'tsp','pepper',9, ''
    union select 'Roasted Vegetable Yapchik', 'English', 6, 'large', 'potatoes',1, ''
    union select 'Roasted Vegetable Yapchik', 'English', 1, null, 'carrot',2, ''
    union select 'Roasted Vegetable Yapchik', 'English', 1, null, 'sweet potato',3, ''
@@ -303,11 +303,11 @@ go
    union select 'Butter Muffins',2,'Add eggs and mix well'
    union select 'Butter Muffins',3,'Slowly add rest of ingredients and mix well'
    union select 'Butter Muffins',4,'fill muffin pans 3/4 full and bake for 30 minutes.'
-   union select '360-Minute Steak', 1, 'Preheat your oven to 275 degrees Fahrenheit'
-   union select '360-Minute Steak', 2, 'combine the potatoes, diced onion, sliced garlic, two tablespoons oil, one teaspoon salt, one and a half teaspoons garlic powder, one and a half teaspoons paprika, and half a teaspoon of pepper.'
-   union select '360-Minute Steak', 3, 'Pour into a large baking pan. Top the potato layer with the minute steaks.'
-   union select '360-Minute Steak', 4, 'Combine the remaining ingredients in the same bowl and then pour over the top of the minute steaks.'
-   union select '360-Minute Steak', 5, 'Cover tightly and bake for six hours.'
+   union select '360_Minute Steak', 1, 'Preheat your oven to 275 degrees Fahrenheit'
+   union select '360_Minute Steak', 2, 'combine the potatoes, diced onion, sliced garlic, two tablespoons oil, one teaspoon salt, one and a half teaspoons garlic powder, one and a half teaspoons paprika, and half a teaspoon of pepper.'
+   union select '360_Minute Steak', 3, 'Pour into a large baking pan. Top the potato layer with the minute steaks.'
+   union select '360_Minute Steak', 4, 'Combine the remaining ingredients in the same bowl and then pour over the top of the minute steaks.'
+   union select '360_Minute Steak', 5, 'Cover tightly and bake for six hours.'
    union select 'Roasted Vegetable Yapchik', 1, 'Preheat oven to 400 degrees Fahrenheit.'
    union select 'Roasted Vegetable Yapchik',2, 'Peel and dice the carrot, sweet potato, onion, and celery.'
    union select 'Roasted Vegetable Yapchik',3, 'Grate the potatoes using the shredding blade in the food processor. Add the eggs, oil, and spices straight into the potatoes and mix.'
@@ -388,7 +388,7 @@ go
    --union select 'Breakfast bash', 'Main', 'Butter Muffins', 0
    union select 'Breakfast bash', 'Appetizer', 'Apple Yogurt Smoothie', 1
    --union select 'Super Supper', 'Soup', 'Yemenite Chicken Soup', 1
-   --union select 'Super Supper', 'Main', '360-Minute Steak', 1
+   --union select 'Super Supper', 'Main', '360_Minute Steak', 1
    --union select 'Super Supper', 'Main', 'Roasted Vegetable Yapchik', 0
    union select 'Super Supper', 'Main', 'Eggplant Casserole Dip', 0
    union select 'Super Supper', 'Dessert', 'Chocolate Chip Cookies', 1
