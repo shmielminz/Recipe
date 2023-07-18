@@ -13,7 +13,7 @@
 
         private void SearchForRecipe(string recipe)
         {
-            DataTable dt = Recipe.GetAllRecipes();
+            DataTable dt = Recipe.SearchRecipes();
             gRecipes.DataSource = dt;
             gRecipes.Columns["RecipeId"].Visible = false;
         }

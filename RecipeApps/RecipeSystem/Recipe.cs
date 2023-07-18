@@ -2,11 +2,18 @@
 {
     public class Recipe
     {
-        public static DataTable GetAllRecipes()
+        public static DataTable SearchRecipes(string recipename = "")
         {
             DataTable dt;
             SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
-            SQLUtility.SetParamValue(cmd, "@All", 1);
+            if (recipename == "")
+            {
+                SQLUtility.SetParamValue(cmd, "@All", 1);
+            }
+            else
+            {
+                SQLUtility.SetParamValue(cmd, "@RecipeName", recipename);
+            }
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
