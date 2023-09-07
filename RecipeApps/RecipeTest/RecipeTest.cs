@@ -2,10 +2,12 @@ namespace RecipeTest
 {
     public class Tests
     {
+        //string connstring = ConfigurationManager.ConnectionStrings["devconn"].ConnectionString;
+        string testconnstring = ConfigurationManager.ConnectionStrings["unittestconn"].ConnectionString;
         [SetUp]
         public void Setup()
         {
-            DbManager.SetConnectionString("Server=.\\MSSQLSERVER01;Database=RecipeDB;Trusted_Connection=True;");
+            DbManager.SetConnectionString(testconnstring, true);
         }
 
         [Test]
@@ -30,7 +32,8 @@ namespace RecipeTest
             r["calories"] = calories;
             r["datedrafted"] = datedrafted;
 
-            Recipe.Save(dt);
+            bizRecipe recipe = new();
+            recipe.Save(dt);
 
             int newid = SQLUtility.GetFirstColumnFirstRowValue("select recipeid from recipe where recipename = '" + recipename + "'");
             Assert.IsTrue(newid > 0, "Recipe with recipename (" + recipename + ") is not in DB");
@@ -136,7 +139,8 @@ namespace RecipeTest
             Assume.That(recipeid > 0, "No recipe without meal and cookbook or no archived recipes for more than 30 days in DB, can't run test");
             TestContext.WriteLine("Existing recipe " + recipedesc + " with id = " + recipeid);
             TestContext.WriteLine("Ensure that app can delete recipe with id = " + recipeid);
-            Recipe.Delete(dt);
+            bizRecipe recipe = new();
+            recipe.Delete(dt);
             DataTable dtafterdelete = SQLUtility.GetDataTable("select * from recipe where recipeid = " + recipeid);
             Assert.IsTrue(dtafterdelete.Rows.Count == 0, "Recipe " + recipedesc + "with id (" + recipeid + ") Exists in DB");
             TestContext.WriteLine("Recipe with id = " + recipeid + " does not exist in DB");
@@ -242,7 +246,8 @@ namespace RecipeTest
             Assume.That(recipeid > 0, "No recipe in DB, can't run test");
             TestContext.WriteLine("Existing recipe with id = " + recipeid);
             TestContext.WriteLine("Ensure that app loads recipe " + recipeid);
-            DataTable dt = Recipe.Load(recipeid);
+            bizRecipe recipe = new();
+            DataTable dt = recipe.Load(recipeid);
             int loadedid = (int)dt.Rows[0]["recipeid"];
             Assert.IsTrue(loadedid == recipeid, "Id returned by app (" + loadedid + ") <> " + recipeid);
             TestContext.WriteLine("Loaded recipe with id = " + loadedid);
@@ -257,7 +262,7 @@ namespace RecipeTest
             TestContext.WriteLine(num + " recipes that match '" + criteria + "' criteria");
             TestContext.WriteLine("Ensure that recipes search returns " + num + " rows");
 
-            DataTable dt = Recipe.GetRecipe(criteria);
+            DataTable dt = Recipe.SearchRecipes(criteria);
             int results = dt.Rows.Count;
 
             Assert.IsTrue(results == num, "Results of recipes search does not match number of recipes, " + results + " <> " + num);
