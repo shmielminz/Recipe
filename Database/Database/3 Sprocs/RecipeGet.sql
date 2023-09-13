@@ -1,49 +1,23 @@
-create or alter procedure dbo.RecipeGet(
-	@All bit = 0,
+create or alter proc dbo.RecipeGet(
 	@RecipeId int = 0,
-	@RecipeName varchar(50) = '',
+	@All bit = 0,
+	@IncludeBlank bit = 0,
 	@Message varchar(500) = '' output
 )
 as
 begin
 	declare @return int = 0
 
-	select @All = isnull(@All,0), @RecipeId = isnull(@RecipeId,0), @RecipeName = isnull(@RecipeName,'')
-
-	select 
-		r.RecipeId, 
-		r.RecipeName,
-		r.RecipeStatus,  
-		s.Username,
-		r.Calories, 
-		NumIngredient = count(ri.RecipeIngredientId),
-		r.ImageName
+	select @RecipeId = isnull(@RecipeId,0), @All = isnull(@All,0), @IncludeBlank = isnull(@IncludeBlank,0)
+	
+	select r.RecipeId, r.CuisineId, r.StaffId, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, RecipeDesc = dbo.RecipeDesc(r.RecipeId)
 	from Recipe r
-	join Staff s
-	on s.StaffId = r.StaffId
-	join RecipeIngredient ri
-	on ri.RecipeId = r.RecipeId
 	where r.RecipeId = @RecipeId
 	or @All = 1
-	or (@RecipeName <> '' and r.RecipeName like '%' + @RecipeName + '%')
-	group by r.RecipeId, r.RecipeName, r.RecipeStatus, s.Username, r.Calories, r.ImageName
-	order by r.RecipeStatus desc, r.RecipeName
+	union select 0,0,0,' ',0,null,null,null,' ', ' '
+	where @IncludeBlank = 1
+	order by r.RecipeId
 
 	return @return
 end
 go
-/*
-exec RecipeGet
-
-exec RecipeGet @All = 1
-
-exec RecipeGet @RecipeName = null
-
-exec RecipeGet @RecipeName = ''
-
-exec RecipeGet @RecipeName = 'g'
-
-declare @RecipeId int
-select top 1 @RecipeId = r.RecipeId from Recipe r
-exec RecipeGet @RecipeId = @RecipeId
-*/
