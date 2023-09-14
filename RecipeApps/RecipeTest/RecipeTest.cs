@@ -294,11 +294,67 @@ namespace RecipeTest
             TestContext.WriteLine(num + " recipes that match '" + criteria + "' criteria");
             TestContext.WriteLine("Ensure that recipes search returns " + num + " rows");
 
-            DataTable dt = Recipe.SearchRecipes(criteria);
-            int results = dt.Rows.Count;
+            bizRecipe recipe = new();
+            List<bizRecipe> lst = recipe.Search(criteria);
+            int results = lst.Count;
 
             Assert.IsTrue(results == num, "Results of recipes search does not match number of recipes, " + results + " <> " + num);
             TestContext.WriteLine("Number of rows returned by recipes search (" + results + ") = " + num);
+        }
+
+        [Test]
+        [TestCase(false)]
+        [TestCase(true)]
+        public void GetListOfRecipes(bool includeblank)
+        {
+            int recipecount = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from recipe");
+            if (includeblank)
+            {
+                recipecount++;
+            }
+            Assume.That(recipecount > 0, "No recipes in DB, can't test");
+            TestContext.WriteLine("Num of recipes in DB = " + recipecount);
+            TestContext.WriteLine("Ensure that num of rows returned by app matches " + recipecount);
+            bizRecipe recipe = new();
+            var lst = recipe.GetList(includeblank);
+            Assert.IsTrue(lst.Count == recipecount, "num rows returned by app (" + lst.Count + ") <> " + recipecount);
+            TestContext.WriteLine("Number of rows in recipes returned by app = " + lst.Count);
+        }
+
+        [Test]
+        public void SearchIngredient()
+        {
+            string criteria = "apple";
+            int num = SQLUtility.GetFirstColumnFirstRowValue($"select total = count(*) from Ingredient where Ingredient like '%{criteria}%'");
+            Assume.That(num > 0, "No ingredients that match the search for " + criteria);
+            TestContext.WriteLine(num + " ingredients that match '" + criteria + "' criteria");
+            TestContext.WriteLine("Ensure that ingredients search returns " + num + " rows");
+
+            bizIngredient ingredient = new();
+            List<bizIngredient> lst = ingredient.Search(criteria);
+            int results = lst.Count;
+
+            Assert.IsTrue(results == num, "Results of ingredients search does not match number of ingredients, " + results + " <> " + num);
+            TestContext.WriteLine("Number of rows returned by ingredient search (" + results + ") = " + num);
+        }
+
+        [Test]
+        [TestCase(false)]
+        [TestCase(true)]
+        public void GetListOfIngredients(bool includeblank)
+        {
+            int ingredientcount = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from ingredient");
+            if (includeblank)
+            {
+                ingredientcount++;
+            }
+            Assume.That(ingredientcount > 0, "No ingredients in DB, can't test");
+            TestContext.WriteLine("Num of ingredients in DB = " + ingredientcount);
+            TestContext.WriteLine("Ensure that num of rows returned by app matches " + ingredientcount);
+            bizIngredient ingredient = new();
+            var lst = ingredient.GetList(includeblank);
+            Assert.IsTrue(lst.Count == ingredientcount, "num rows returned by app (" + lst.Count + ") <> " + ingredientcount);
+            TestContext.WriteLine("Number of rows in ingredients returned by app = " + lst.Count);
         }
 
         [Test]
