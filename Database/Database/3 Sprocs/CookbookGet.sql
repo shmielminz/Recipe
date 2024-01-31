@@ -10,13 +10,13 @@ begin
 
 	select @All = isnull(@All,0), @IncludeBlank = isnull(@IncludeBlank,0), @CookbookId = isnull(@CookbookId,0)
 
-	select c.CookbookId, s.StaffId, s.Username, c.CookbookName, c.DateCreated, c.Price, c.Active
+	select c.CookbookId, s.StaffId, s.Username, c.CookbookName, c.DateCreated, c.Price, c.Active,c.CookbookSkill,c.CookbookSkillDesc,c.ImageName
 	from Cookbook c
 	join Staff s
 	on s.StaffId = c.StaffId
 	where c.CookbookId = @CookbookId
 	or @All = 1
-	union select 0,0,' ',' ',null,0,null
+	union select 0,0,' ',' ',null,0,null,null,'',''
 	where @IncludeBlank = 1
 	order by c.CookbookId
 

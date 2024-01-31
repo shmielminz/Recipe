@@ -12,12 +12,19 @@ public partial class RecipeSearch : ContentPage
 
     private void SearchRecipe()
     {
-        DataTable dt = Recipe.SearchRecipes(RecipeNameTxt.Text);
-        RecipeLst.ItemsSource = dt.Rows;
+        bizRecipe recipe = new();
+        var lstrecipe = recipe.Search(RecipeNameTxt.Text);
+        RecipeLst.ItemsSource = lstrecipe;
     }
 
     private void SearchBtn_Clicked(object sender, EventArgs e)
     {
 		SearchRecipe();
+    }
+
+    private async void RecipeLst_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+        bizRecipe recipe = (bizRecipe)e.Item;
+        await Navigation.PushAsync(new RecipeDetail(recipe.RecipeId));
     }
 }

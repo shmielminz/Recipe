@@ -11,12 +11,14 @@ begin
 
 	select @RecipeId = isnull(@RecipeId,0), @All = isnull(@All,0), @IncludeBlank = isnull(@IncludeBlank,0), @RecipeName = isnull(@RecipeName,'')
 	
-	select r.RecipeId, r.CuisineId, r.StaffId, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, RecipeDesc = dbo.RecipeDesc(r.RecipeId)
+	select r.RecipeId, r.CuisineId, r.StaffId, s.Username, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, RecipeDesc = dbo.RecipeDesc(r.RecipeId),r.IsVegan, NumIngredients = dbo.NumIngredients(r.RecipeId), r.ImageName
 	from Recipe r
+	join Staff s
+	on s.StaffId = r.StaffId
 	where r.RecipeId = @RecipeId
 	or @All = 1
 	or (@RecipeName <> '' and r.RecipeName like '%' + @RecipeName + '%')
-	union select 0,0,0,' ',0,null,null,null,' ', ' '
+	union select 0,0,0,' ',' ',0,null,null,null,' ', ' ',null,null,' '
 	where @IncludeBlank = 1
 	order by r.RecipeId
 

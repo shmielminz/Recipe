@@ -3,26 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RecipeMAUI.RecipeSearch"
              Title="RecipeSearch">
-    <VerticalStackLayout HorizontalOptions="Center">
-        <Label Text="Recipe Search" FontSize="Medium" HorizontalOptions="Center"/>
-        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,*" WidthRequest="500">
+    <Grid HorizontalOptions="Center" ColumnDefinitions="*" RowDefinitions="Auto,*">
+        <Label Text="Recipe Search" FontSize="Medium" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0"/>
+        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,*" WidthRequest="500" Grid.Column="0" Grid.Row="1">
             <Label Text="Recipe Name" Grid.Column="0" Grid.Row="0" VerticalTextAlignment="Center" Margin="10"/>
             <!--I added Text="" you should be able to search for all without adding first a letter-->
             <Entry x:Name="RecipeNameTxt" Placeholder="Recipe Name" Text="" Grid.Column="1" Grid.Row="0"/>
             <Button x:Name="SearchBtn" Text="Search" Clicked="SearchBtn_Clicked" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
-            <ListView x:Name="RecipeLst" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HeightRequest="500">
+            <ListView x:Name="RecipeLst" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" ItemTapped="RecipeLst_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid RowDefinitions="*" ColumnDefinitions="Auto,Auto,Auto">
-                                <Image Source="{Binding Path=[ImageName]}" HeightRequest="75" WidthRequest="75" Grid.Column="0" Grid.Row="0"/>
-                                <Label Text="{Binding Path=[RecipeName]}" Grid.Column="1" Grid.Row="0" Margin="20,0,10,0" VerticalTextAlignment="Center"/>
-                                <Label Text="{Binding Path=[RecipeStatus]}" Grid.Column="2" Grid.Row="0" VerticalTextAlignment="Center"/>
+                            <Grid RowDefinitions="*" ColumnDefinitions="Auto,Auto,Auto" HeightRequest="75">
+                                <Image Source="{Binding ImageName}" WidthRequest="75" Grid.Column="0" Grid.Row="0"/>
+                                <Label Text="{Binding RecipeName}" Grid.Column="1" Grid.Row="0" Margin="20,0,10,0" VerticalTextAlignment="Center"/>
+                                <Label Text="{Binding RecipeStatus}" Grid.Column="2" Grid.Row="0" VerticalTextAlignment="Center"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

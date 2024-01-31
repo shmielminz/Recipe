@@ -72,7 +72,8 @@ create table dbo.Recipe(
         check(DateArchived between case when DatePublished is null then DateDrafted else DatePublished end and getdate())
 )
 go
-
+alter table recipe add IsVegan bit not null default 0
+go
 create table dbo.RecipeIngredient(
     RecipeIngredientId int not null identity primary key,
     MeasurementId int null constraint f_Measurement_RecipeIngredient foreign key references Measurement(MeasurementId),
@@ -117,7 +118,8 @@ create table dbo.Meal(
     ImageName as concat('Meal_',replace(MealName,' ','_'),'.jpg') persisted
 )
 go
-
+alter table meal add MealDesc varchar(500) not null default ''
+go
 create table dbo.MealCourse(
     MealCourseId int not null identity primary key,
     MealId int not null constraint f_Meal_MealCourse foreign key references Meal(MealId),
@@ -147,7 +149,10 @@ create table dbo.Cookbook(
     ImageName as concat('Cookbook_',replace(CookbookName,' ','_'),'.jpg') persisted
 )
 go
-
+alter table cookbook add CookbookSkill int not null default 1 constraint ck_Cookbook_skill_can_only_be_1_2_or_3 check(CookbookSkill between 1 and 3)
+go
+alter table cookbook add CookbookSkillDesc as case CookbookSkill when 1 then 'Beginner' when 2 then 'Intermediate' when 3 then 'Advanced' end persisted
+go
 create table dbo.CookbookRecipe(
     CookbookRecipeId int not null identity primary key,
     CookbookId int not null constraint f_Cookbook_CookbookRecipe foreign key references Cookbook(CookbookId),

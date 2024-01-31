@@ -9,19 +9,88 @@
 
         private int _recipeid;
         private int _staffid;
+        private string _username = "";
         private int _cuisineid;
         private string _recipename = "";
         private int _calories;
+        private int _numingredients;
         private DateTime _datedrafted;
         private DateTime? _datepublished;
         private DateTime? _datearchived;
+        private bool _isvegan;
+        private string _imagename = "";
+        private string _recipestatus = "";
+        private List<bizStaff>? _lststaff;
+        private List<bizCuisine>? _lstcuisine;
+        private List<bizRecipeIngredient> _lstrecipeingredient;
+        
 
         public List<bizRecipe> Search(string recipenameval)
         {
             SqlCommand cmd = SQLUtility.GetSqlCommand(this.GetSprocName);
             SQLUtility.SetParamValue(cmd, "RecipeName", recipenameval);
+            if (recipenameval == "")
+            {
+                SQLUtility.SetParamValue(cmd, "All", 1);
+            }
             DataTable dt = SQLUtility.GetDataTable(cmd);
             return this.GetListFromDataTable(dt);
+        }
+
+        private List<bizStaff> StaffList
+        {
+            get
+            {
+                if (_lststaff == null)
+                {
+                    _lststaff = new bizStaff().GetList(true);
+                }
+                return _lststaff;
+            }
+        }
+
+        private bizStaff? Staff
+        {
+            get => _lststaff?.FirstOrDefault(s => s.StaffId == this.StaffId);
+            set
+            {
+                this.StaffId = value == null ? 0 : value.StaffId;
+                InvokePropertyChanged();
+            }
+        }
+
+        private List<bizCuisine> CuisineList
+        {
+            get
+            {
+                if (_lstcuisine == null)
+                {
+                    _lstcuisine = new bizCuisine().GetList(true);
+                }
+                return _lstcuisine;
+            }
+        }
+
+        private bizCuisine? Cuisine
+        {
+            get => _lstcuisine?.FirstOrDefault(s => s.CuisineId == this.CuisineId);
+            set
+            {
+                this.CuisineId = value == null ? 0 : value.CuisineId;
+                InvokePropertyChanged();
+            }
+        }
+
+        private List<bizRecipeIngredient> RecipeIngredientList
+        {
+            get
+            {
+                if (_lstrecipeingredient == null)
+                {
+                    _lstrecipeingredient = new bizRecipeIngredient().LoadByRecipeId(this.RecipeId);
+                }
+                return _lstrecipeingredient;
+            }
         }
 
         public int RecipeId
@@ -45,6 +114,19 @@
                 if (_staffid != value)
                 {
                     _staffid = value;
+                    InvokePropertyChanged();
+                }
+            }
+        }
+
+        public string Username
+        {
+            get => _username;
+            private set
+            {
+                if (_username != value)
+                {
+                    _username = value;
                     InvokePropertyChanged();
                 }
             }
@@ -89,6 +171,19 @@
             }
         }
 
+        public int NumIngredients
+        {
+            get => _numingredients;
+            private set
+            {
+                if (_numingredients != value)
+                {
+                    _numingredients = value;
+                    InvokePropertyChanged();
+                }
+            }
+        }
+
         public DateTime DateDrafted
         {
             get => _datedrafted;
@@ -123,6 +218,45 @@
                 if (_datearchived != value)
                 {
                     _datearchived = value;
+                    InvokePropertyChanged();
+                }
+            }
+        }
+
+        public bool IsVegan
+        {
+            get => _isvegan;
+            set
+            {
+                if (_isvegan != value)
+                {
+                    _isvegan = value;
+                    InvokePropertyChanged();
+                }
+            }
+        }
+
+        public string ImageName
+        {
+            get => _imagename.ToLower();
+            private set
+            {
+                if (_imagename != value)
+                {
+                    _imagename = value.ToLower();
+                    InvokePropertyChanged();
+                }
+            }
+        }
+
+        public string RecipeStatus
+        {
+            get => _recipestatus;
+            private set
+            {
+                if (_recipestatus != value)
+                {
+                    _recipestatus = value;
                     InvokePropertyChanged();
                 }
             }

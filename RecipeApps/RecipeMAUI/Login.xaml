@@ -8,17 +8,23 @@
             <Style TargetType="Entry">
                 <Setter Property="MinimumWidthRequest" Value="200"/>
             </Style>
+            <Style TargetType="Label">
+                <Setter Property="BackgroundColor" Value="Green"/>
+            </Style>
+            <Style TargetType="Label" x:Key="lbl" CanCascade="True">
+                <Setter Property="TextColor" Value="Blue"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Label Text="Login" FontSize="Header" HorizontalOptions="Center"/>
+        <Label Text="Login" Style="{StaticResource Key=lbl}" FontSize="Header" HorizontalOptions="Center"/>
         <Label x:Name="MessageLbl" FontSize="Medium" TextColor="Red" HorizontalOptions="Center"/>
         <Border Padding="10">
             <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="10">
                 <Label Grid.Row="0" Grid.Column="0" Text="User Name"/>
-                <Entry x:Name="UserNameTxt" Grid.Row="0" Grid.Column="1"/>
+                <Entry x:Name="UserNameTxt" Grid.Row="0" Grid.Column="1" Text=""/>
                 <Label Grid.Row="1" Grid.Column="0" Text="Password"/>
-                <Entry x:Name="PasswordTxt" Grid.Row="1" Grid.Column="1" IsPassword="True"/>
+                <Entry x:Name="PasswordTxt" Grid.Row="1" Grid.Column="1" IsPassword="True" Text=""/>
                 <Button x:Name="LoginBtn" Text="Login" Grid.Row="2" Grid.Column="0" Clicked="LoginBtn_Clicked"/>
                 <Button x:Name="CancelBtn" Text="Cancel" Grid.Row="2" Grid.Column="1" Clicked="CancelBtn_Clicked"/>
             </Grid>

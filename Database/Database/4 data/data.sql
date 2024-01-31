@@ -447,3 +447,85 @@ on c.CookbookName = x.CookbookName
 join Recipe r
 on r.RecipeName = x.RecipeName
 go
+;with x as(
+   select MealName = 'Breakfast bash', Course = 'Main', RecipeName = 'Butter Muffins', Main = 0
+   union select 'Super Supper', 'Soup', 'Yemenite Chicken Soup', 1
+   union select 'Super Supper', 'Main', '360_Minute Steak', 1
+   union select 'Super Supper', 'Main', 'Roasted Vegetable Yapchik', 0
+   union select 'Tohameya', 'Soup', 'Yemenite Chicken Soup', 1
+   union select 'Tohameya', 'Main', 'Roasted Vegetable Yapchik', 1
+)
+insert MealCourseRecipe(MealCourseId,RecipeId,MainDish)
+select mc.MealCourseId, r.RecipeId, x.Main
+from x
+join Recipe r
+on r.RecipeName = x.RecipeName
+join Course c
+on c.CourseName = x.Course
+join Meal m
+on m.MealName = x.MealName
+join MealCourse mc
+on mc.MealId = m.MealId
+and mc.CourseId = c.CourseId
+go
+
+;with x as(
+   select CookbookName = 'Treats for two', SequenceVal = 2, RecipeName = 'Apple Yogurt Smoothie'
+   union select 'Treats for two', 4, 'Butter Muffins'
+   union select 'When Vegetable Meet',1,'Roasted Vegetable Yapchik'
+   union select 'When Vegetable Meet',2,'Apple Yogurt Smoothie'
+   union select 'Homemade No Time',4, 'Roasted Vegetable Yapchik'
+   union select 'Homemade No Time',3, 'Butter Muffins'
+   union select 'Eat To Live',2,'Butter Muffins'
+)
+insert CookbookRecipe(CookbookId,RecipeId,SequenceVal)
+select c.CookbookId, r.RecipeId, x.SequenceVal
+from x
+join Cookbook c
+on c.CookbookName = x.CookbookName
+join Recipe r
+on r.RecipeName = x.RecipeName
+go
+
+;with x(CookbookName, Skill) as(
+	select 'Eat To Live',2
+	union select 'Homemade No Time',1
+	union select 'Treats for two',3
+	union select 'When Vegetable Meet',1
+)
+update c
+set c.CookbookSkill = x.Skill
+--select *
+from Cookbook c
+join x
+on x.CookbookName = c.CookbookName
+
+;with x(MealName,MealDesc) as(
+	select 'Bruncheese', 'This meal is one of our staff favourite. We serve it as a brunch which is between breakfast and lunch'
+	union select 'Tohameya', 'This meal is served on Friday afternoon only. In the winter we might have this available on Thursday evening also.'
+	union select 'Breakfast bash', 'Breakfast bash is what you think it is. It''s a breakfast.'
+	union select 'Super Supper', 'This is our basic supper which is available every afternoon from 4:00PM till late.'
+)
+update m
+set m.MealDesc = x.MealDesc
+--select *
+from Meal m
+join x
+on x.MealName = m.MealName
+
+;with x (RecipeName, IsVegan) as(
+	select '360_Minute Steak',0
+	union select 'Yemenite Chicken Soup',0
+	union select 'Chocolate Chip Cookies',1
+	union select 'Eggplant Casserole Dip',1
+	union select 'Apple Yogurt Smoothie',0
+	union select 'Cheese Bread',0
+	union select 'Roasted Vegetable Yapchik',0
+	union select 'Butter Muffins',0
+)
+update r
+set r.IsVegan = x.IsVegan
+--select *
+from Recipe r
+join x
+on x.RecipeName = r.RecipeName

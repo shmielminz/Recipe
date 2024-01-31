@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RecipeMAUI.RecipeDetail"
+             Title="RecipeDetail">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="MinimumWidthRequest" Value="150"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="Picker">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </ContentPage.Resources>
+    <Border Padding="10" MaximumWidthRequest="750">
+        <Grid ColumnDefinitions="Auto,*,Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,*" ColumnSpacing="5" RowSpacing="10">
+            <Label x:Name="MessageLbl" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" TextColor="{StaticResource Key=Danger}" />
+
+            <Label Grid.Column="0" Grid.Row="1" Text="User"/>
+            <Picker Grid.Column="1" Grid.Row="1" ItemsSource="{Binding StaffList}" ItemDisplayBinding="{Binding Username}" SelectedItem="{Binding Staff}"/>
+            <Label Grid.Column="2" Grid.Row="1" Text="Cuisine"/>
+            <Picker Grid.Column="3" Grid.Row="1" ItemsSource="{Binding CuisineList}" ItemDisplayBinding="{Binding CuisineType}" SelectedItem="{Binding Cuisine}"/>
+
+            <Label Grid.Column="0" Grid.Row="2" Text="Recipe Name"/>
+            <Entry Text="{Binding RecipeName}" Grid.Column="1" Grid.Row="2" Placeholder="Recipe Name"/>
+            <Label Grid.Column="2" Grid.Row="2" Text="Cuisine"/>
+            <Entry Text="{Binding Calories}" Grid.Column="3" Grid.Row="2" Placeholder="Calories"/>
+
+            <Label Grid.Column="0" Grid.Row="3" Text="Date Drafted"/>
+            <Entry Text="{Binding DateDrafted, StringFormat='{0:d}'}" Grid.Column="1" Grid.Row="3"/>
+            <Label Grid.Column="2" Grid.Row="3" Text="Date Published"/>
+            <Entry Text="{Binding DatePublished, StringFormat='{0:d}'}" Grid.Column="3" Grid.Row="3"/>
+            
+            <Label Grid.Column="0" Grid.Row="4" Text="Date Archived"/>
+            <Entry Text="{Binding DateArchived, StringFormat='{0:d}'}" Grid.Column="1" Grid.Row="4"/>
+            <Label Grid.Column="2" Grid.Row="4" Text="Recipe Status"/>
+            <Label Text="{Binding RecipeStatus}" Grid.Column="3" Grid.Row="4"/>
+            
+            <HorizontalStackLayout Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="4" Spacing="10" HorizontalOptions="Center">
+                <Button x:Name="SaveBtn" Text="Save" Clicked="SaveBtn_Clicked"/>
+                <Button x:Name="DeleteBtn" Text="Delete" BackgroundColor="{StaticResource Key=Danger}" Clicked="DeleteBtn_Clicked"/>
+                <Button x:Name="CancelBtn" Text="Close" BackgroundColor="{StaticResource Key=Warning}" Clicked="CancelBtn_Clicked"/>
+            </HorizontalStackLayout>
+
+            <VerticalStackLayout Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="4">
+                <Label Text="Ingredients" FontSize="Subtitle"/>
+                <VerticalStackLayout>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Label/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="4">
+                <Label Text="Steps" FontSize="Subtitle"/>
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding RecipeIngredientList}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Label/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+    </Border>
+</ContentPage>
