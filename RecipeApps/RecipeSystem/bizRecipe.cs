@@ -37,6 +37,14 @@
             return this.GetListFromDataTable(dt);
         }
 
+        public List<bizRecipe> GetRecipesFromCookbook(string cookbookname)
+        {
+            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
+            SQLUtility.SetParamValue(cmd, "CookbookName", cookbookname);
+            DataTable dt = SQLUtility.GetDataTable(cmd);
+            return this.GetListFromDataTable(dt);
+        }
+
         private List<bizStaff> StaffList
         {
             get
