@@ -23,7 +23,8 @@
         private List<bizStaff>? _lststaff;
         private List<bizCuisine>? _lstcuisine;
         private List<bizRecipeIngredient> _lstrecipeingredient;
-        
+        private List<bizRecipeStep> _lstrecipestep;
+
 
         public List<bizRecipe> Search(string recipenameval)
         {
@@ -89,7 +90,7 @@
             }
         }
 
-        private List<bizRecipeIngredient> RecipeIngredientList
+        public List<bizRecipeIngredient> RecipeIngredientList
         {
             get
             {
@@ -98,6 +99,18 @@
                     _lstrecipeingredient = new bizRecipeIngredient().LoadByRecipeId(this.RecipeId);
                 }
                 return _lstrecipeingredient;
+            }
+        }
+
+        public List<bizRecipeStep> RecipeStepList
+        {
+            get
+            {
+                if (_lstrecipestep == null)
+                {
+                    _lstrecipestep = new bizRecipeStep().LoadByRecipeId(this.RecipeId);
+                }
+                return _lstrecipestep;
             }
         }
 

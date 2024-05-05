@@ -5,6 +5,7 @@
         private int _recipeingredientid;
         private int _recipeid;
         private int _ingredientid;
+        private string _ingredientdesc = "";
         private int _measurementid;
         private int _sequenceval;
         private decimal _measurementqty;
@@ -53,6 +54,19 @@
                 {
                     _ingredientid = value;
                     InvokePropertyChanged();
+                }
+            }
+        }
+
+        public string IngredientDesc
+        {
+            get => _ingredientdesc;
+            set
+            {
+                if (_ingredientdesc != value)
+                {
+                    _ingredientdesc = value;
+                    this.InvokePropertyChanged();
                 }
             }
         }
