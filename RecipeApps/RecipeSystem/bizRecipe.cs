@@ -19,6 +19,7 @@
         private DateTime? _datearchived;
         private bool _isvegan;
         private string _imagename = "";
+        private string _recipedesc = "";
         private string _recipestatus = "";
         private List<bizStaff>? _lststaff;
         private List<bizCuisine>? _lstcuisine;
@@ -42,6 +43,14 @@
         {
             SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
             SQLUtility.SetParamValue(cmd, "CookbookName", cookbookname);
+            DataTable dt = SQLUtility.GetDataTable(cmd);
+            return this.GetListFromDataTable(dt);
+        }
+
+        public List<bizRecipe> GetRecipesByCuisine(string cuisinetype)
+        {
+            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeGet");
+            SQLUtility.SetParamValue(cmd, "CuisineType", cuisinetype);
             DataTable dt = SQLUtility.GetDataTable(cmd);
             return this.GetListFromDataTable(dt);
         }
@@ -80,9 +89,9 @@
             }
         }
 
-        private bizCuisine? Cuisine
+        public bizCuisine? Cuisine
         {
-            get => _lstcuisine?.FirstOrDefault(s => s.CuisineId == this.CuisineId);
+            get => this.CuisineList?.FirstOrDefault(s => s.CuisineId == this.CuisineId);
             set
             {
                 this.CuisineId = value == null ? 0 : value.CuisineId;
@@ -252,6 +261,19 @@
                 if (_isvegan != value)
                 {
                     _isvegan = value;
+                    InvokePropertyChanged();
+                }
+            }
+        }
+
+        public string RecipeDesc
+        {
+            get => _recipedesc;
+            private set
+            {
+                if (_recipedesc != value)
+                {
+                    _recipedesc = value;
                     InvokePropertyChanged();
                 }
             }

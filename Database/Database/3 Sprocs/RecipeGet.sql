@@ -5,18 +5,21 @@ create or alter proc dbo.RecipeGet(
 	@RecipeName varchar(50) = '',
 	@CookbookName varchar(50) = '',
 	@MealName varchar(50) = '',
+	@CuisineType varchar(25) = '',
 	@Message varchar(500) = '' output
 )
 as
 begin
 	declare @return int = 0
 
-	select @RecipeId = isnull(@RecipeId,0), @All = isnull(@All,0), @IncludeBlank = isnull(@IncludeBlank,0), @RecipeName = isnull(@RecipeName,''), @CookbookName = isnull(@CookbookName,''), @MealName = isnull(@MealName,'')
+	select @RecipeId = isnull(@RecipeId,0), @All = isnull(@All,0), @IncludeBlank = isnull(@IncludeBlank,0), @RecipeName = isnull(@RecipeName,''), @CuisineType = isnull(@CuisineType,''), @CookbookName = isnull(@CookbookName,''), @MealName = isnull(@MealName,'')
 	
 	select r.RecipeId, r.CuisineId, r.StaffId, s.Username, r.RecipeName, r.Calories, r.DateDrafted, r.DatePublished, r.DateArchived, r.RecipeStatus, RecipeDesc = dbo.RecipeDesc(r.RecipeId),r.IsVegan, NumIngredients = dbo.NumIngredients(r.RecipeId), r.ImageName
 	from Recipe r
 	join Staff s
 	on s.StaffId = r.StaffId
+	join Cuisine cu
+	on cu.CuisineId = r.CuisineId
 	left join CookbookRecipe cr
 	on cr.RecipeId = r.RecipeId
 	left join Cookbook c
@@ -32,6 +35,7 @@ begin
 	or (@RecipeName <> '' and r.RecipeName like '%' + @RecipeName + '%')
 	or (@CookbookName <> '' and c.CookbookName = @CookbookName)
 	or (@MealName <> '' and m.MealName = @MealName)
+	or (@CuisineType <> '' and cu.CuisineType = @CuisineType)
 	union select 0,0,0,' ',' ',0,null,null,null,' ', ' ',null,null,' '
 	where @IncludeBlank = 1
 	order by r.RecipeId
